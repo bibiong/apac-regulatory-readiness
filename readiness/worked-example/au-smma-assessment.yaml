@@ -1,0 +1,130 @@
+# WORKED EXAMPLE — FICTIONAL PLATFORM.
+#
+# "Northwind Social" is invented. The regime, regulator, deadlines and enforcement posture
+# are real and cited in tracker/data/australia.yaml. The maturity scores, owners and
+# remediation estimates are illustrative and describe no real organisation.
+#
+# Purpose: show the framework producing a decision, not a document.
+
+assessment:
+  subject: Northwind Social (fictional platform)
+  regime: Australia — Social Media Minimum Age
+  instrument_id: au-smma-2024
+  assessor: B. Ong
+  assessed_on: 2026-08-23
+  next_review: 2026-09-20
+  enforcement_deadline: 2026-12-31
+  deadline_basis: >-
+    Expected passage of the Online Safety Amendment (Strengthening Enforcement) Bill 2026,
+    which as drafted doubles maximum penalties and widens compulsory notice powers
+    (tracker id au-strengthening-enforcement-2026, certainty: speculative).
+    Chosen as the operative date because it is the point at which the evidence position
+    has to be defensible at a higher penalty exposure and a higher notice volume — not the
+    point at which the duty begins, which was 10 Dec 2025 and has passed.
+    eSafety's earlier stated aim of deciding enforcement by mid-2026 has now elapsed; the
+    investigations remain the live exposure and are captured in the likelihood scores below.
+
+obligations:
+  - id: ob-01
+    obligation: Take reasonable steps to prevent under-16s from holding an account.
+    provision: s.63C
+    owner: Director, Age Assurance Engineering
+    maturity: 2
+    evidence: >-
+      Age-inference model deployed to Australian traffic and documented in an internal
+      design doc. No continuous measurement of effectiveness against a labelled holdout.
+    consequence: 5
+    likelihood: 5
+    likelihood_basis: >-
+      eSafety has publicly flagged five platforms including Facebook and Instagram and
+      stated it is moving into an enforcement stance.
+    remediation: >-
+      Stand up continuous effectiveness measurement against a labelled holdout; publish
+      internal monthly accuracy reporting.
+    remediation_weeks: 14
+
+  - id: ob-02
+    obligation: Detect and remove existing accounts held by under-16s.
+    provision: s.63C
+    owner: Director, Age Assurance Engineering
+    maturity: 3
+    evidence: >-
+      Detection pipeline operating with monthly volume reporting to the integrity review.
+      Evidence assembled on request rather than retained continuously.
+    consequence: 5
+    likelihood: 5
+    likelihood_basis: Directly in scope of the published compliance updates.
+    remediation: Move volume and outcome reporting into continuous retention with fixed schema.
+    remediation_weeks: 6
+
+  - id: ob-03
+    obligation: >-
+      Maintain an appeals route for users incorrectly assessed as under 16, and record its
+      outcomes.
+    provision: s.63C (reasonable steps — evidentiary)
+    owner: Head of Appeals Operations
+    maturity: 2
+    evidence: >-
+      Appeals accepted through the general support flow. No dedicated reason codes, so
+      overturn reasons cannot be reported without manual sampling.
+    consequence: 4
+    likelihood: 5
+    likelihood_basis: >-
+      False-positive handling is explicitly within the scope of the information notice
+      modelled in workflow/examples/INQ-2026-014.yaml.
+    remediation: >-
+      Add dedicated reason codes and an appeals outcome table; backfill by sampling where
+      backfill is possible and state plainly where it is not.
+    remediation_weeks: 10
+
+  - id: ob-04
+    obligation: Retain evidence sufficient to demonstrate reasonable steps on request.
+    provision: s.63C (evidentiary)
+    owner: Regulatory Readiness PM
+    maturity: 1
+    evidence: >-
+      No standing evidence pack. Each regulator request has been answered by assembling
+      material from scratch, which has so far worked and does not scale.
+    consequence: 5
+    likelihood: 5
+    likelihood_basis: >-
+      Under an effort standard the evidence position is the compliance position. This is
+      assessed as the highest-exposure gap for that reason.
+    remediation: >-
+      Define the standing evidence pack, assign per-artefact owners, and put it on a
+      monthly refresh with a named reviewer.
+    remediation_weeks: 8
+
+  - id: ob-05
+    obligation: Respond to compulsory information-gathering notices within the stated period.
+    provision: general
+    owner: Regulatory Readiness PM
+    maturity: 3
+    evidence: >-
+      Two notices answered on time in the last 12 months, with the working files retained.
+      Process documented but not exercised outside live use.
+    consequence: 5
+    likelihood: 4
+    likelihood_basis: Notice volume expected to rise if the 2026 enforcement Bill passes.
+    remediation: >-
+      Dry-run the response process against a simulated notice; fix what the dry run breaks.
+    remediation_weeks: 4
+
+  - id: ob-06
+    obligation: >-
+      Ensure public statements on Australian minor-access measures are consistent with
+      positions filed in other APAC jurisdictions.
+    provision: general (cross-jurisdictional)
+    owner: APAC Policy Lead
+    maturity: 1
+    evidence: >-
+      No systematic scan. Consistency has depended on the same two people happening to
+      review filings in both markets.
+    consequence: 4
+    likelihood: 3
+    likelihood_basis: >-
+      Divergence surfaces late and usually via a third party rather than via the regulator.
+    remediation: >-
+      Build a filings index keyed by topic and jurisdiction; make the consistency scan a
+      required stage in the response workflow.
+    remediation_weeks: 5

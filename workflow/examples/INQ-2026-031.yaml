@@ -1,0 +1,67 @@
+# FICTIONAL WORKED EXAMPLE. Built to demonstrate the weekend-arrival trap: a deadline
+# that looks comfortable on the calendar and is not, once working hours are counted.
+id: INQ-2026-031
+received: 2026-07-17T17:40:00      # Friday evening, SGT
+logged: 2026-07-17T17:55:00
+jurisdiction: Japan
+regulator: Ministry of Internal Affairs and Communications
+channel: letter
+legal_basis: >-
+  Request for supplementary information following corrective recommendations on FY2025
+  enforcement disclosure completeness under the Information Distribution Platform Act.
+compelled: true
+inquiry_type: investigation
+deadline: 2026-07-21T17:00:00      # Tuesday
+deadline_source: regulator_stated
+extension_available: true
+subject: >-
+  Supplementary information on how FY2025 enforcement disclosure figures were derived,
+  which categories were omitted and why, and the remediation plan for FY2026 reporting.
+products_in_scope: [Social Feed, Photo Sharing, Messaging]
+related_instruments: [jp-idpa]
+sensitivity: high
+sensitivity_drivers:
+  - government_relations
+  - precedent_setting
+  - cross_jurisdictional_consistency
+
+triage:
+  compulsion: compelled_no_stated_penalty
+  sensitivity: high
+  consistency_exposure: contradicts_prior_filing_risk
+  remediation_lead_time: engineering_weeks
+  overrides:
+    - regulator_alleges_non_compliance
+
+sme_owners:
+  - function: data
+    question: >-
+      For each disclosed FY2025 category, what was the source query, and which categories
+      in the reporting template had no corresponding production metric at all?
+    owner: Transparency reporting analyst
+    due: 2026-07-20T12:00:00
+    status: not_started
+  - function: policy
+    question: >-
+      Where the template asked a question the metrics could not answer, what was disclosed
+      instead, and was that omission stated or silent?
+    owner: Japan policy lead
+    due: 2026-07-20T15:00:00
+    status: not_started
+  - function: legal
+    question: Does the remediation plan create commitments that bind FY2026 reporting?
+    owner: Japan counsel
+    due: 2026-07-21T10:00:00
+    status: not_started
+
+prior_filings:
+  - INQ-2026-009
+
+commitments_made: []
+status: triaged
+notes: >-
+  Four calendar days, one working day and a fraction. The generator surfaces the negative
+  float rather than letting the calendar hide it. The correct first action here is not to
+  start drafting — it is to take the available extension, which the intake record already
+  captured as available. Extension availability is an intake field precisely so this
+  decision is made on Friday evening rather than discovered on Monday.

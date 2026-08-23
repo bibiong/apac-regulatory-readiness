@@ -1,0 +1,52 @@
+# Japan
+- id: jp-idpa
+  jurisdiction: Japan
+  jurisdiction_code: JP
+  instrument: Information Distribution Platform Act
+  instrument_local: 情報流通プラットフォーム対処法
+  regulator: MIC
+  regulator_full: Ministry of Internal Affairs and Communications
+  status: in_force
+  themes: [content_takedown, transparency_reporting, licensing]
+  obligations:
+    - ref: Art. 20(1)
+      summary: >-
+        Designated large-scale platform operators must expedite responses to
+        rights-infringement notices and publish transparency disclosures.
+      owner_function: [legal, ops, policy, data]
+      clock: Expedited response to rights-infringement notices
+      evidence_required: >-
+        Enforcement disclosure metrics with documented lineage. Completeness is the
+        supervised standard, not merely publication.
+  deadlines: []
+  penalty:
+    max_financial: null
+    basis: null
+    personal_liability: false
+    non_financial: Corrective recommendations; designation-linked supervision
+  enforcement_signals:
+    - date: 2026-07-01
+      signal: >-
+        MIC issued corrective recommendations to several designated operators, finding FY2025
+        enforcement disclosures incomplete against reporting requirements.
+      source: https://www.soumu.go.jp/menu_news/
+  meta_exposure: >-
+    Meta is among the designated large-scale operators and publishes an annual IDPA
+    transparency report covering Facebook, Instagram and Threads.
+  sources:
+    - title: Ministry of Internal Affairs and Communications — news releases
+      url: https://www.soumu.go.jp/menu_news/
+      kind: regulator
+      accessed: 2026-08-23
+    - title: Meta Transparency Center
+      url: https://transparency.meta.com/
+      kind: secondary
+      accessed: 2026-08-23
+  confidence: low
+  notes: >-
+    Reporting-completeness findings are usually a data-lineage problem rather than a
+    willingness problem — the report asks a question internal metrics were never shaped to
+    answer. Confidence is low because the July 2026 recommendation is sourced to press
+    reporting; re-verify against the MIC release before citing.
+  last_verified: 2026-08-23
+  verified_by: B. Ong

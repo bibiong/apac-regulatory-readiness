@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/bibiong/apac-regulatory-readiness/workflow/schema/inquiry.schema.json",
+  "title": "Regulatory inquiry intake record",
+  "description": "Captured at intake, before triage. Fields that cannot be known at intake are nullable; fields that determine the clock are not.",
+  "type": "object",
+  "required": ["id", "received", "jurisdiction", "regulator", "channel", "legal_basis",
+               "compelled", "deadline", "subject", "sensitivity"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^INQ-[0-9]{4}-[0-9]{3}$" },
+    "received": { "type": "string", "format": "date-time",
+      "description": "When the inquiry actually arrived, not when it was logged. These differ and the difference is often the whole problem." },
+    "logged": { "type": "string", "format": "date-time" },
+    "jurisdiction": { "type": "string" },
+    "regulator": { "type": "string" },
+    "channel": { "type": "string",
+      "enum": ["portal", "email", "letter", "in_person", "media_query_forwarded", "law_enforcement_liaison"] },
+    "legal_basis": { "type": "string",
+      "description": "The provision relied on. 'unstated' is a valid and important answer — it changes the response strategy." },
+    "compelled": { "type": "boolean",
+      "description": "True where non-response carries a statutory penalty. Drives priority more than any other single field." },
+    "inquiry_type": { "type": "string",
+      "enum": ["information_request", "investigation", "consultation", "periodic_report",
+               "transparency_notice", "enforcement_notice", "informal_query"] },
+    "deadline": { "type": "string", "format": "date-time" },
+    "deadline_source": { "type": "string", "enum": ["statutory", "regulator_stated", "negotiated", "self_imposed"] },
+    "extension_available": { "type": ["boolean", "null"] },
+    "subject": { "type": "string", "minLength": 10 },
+    "products_in_scope": { "type": "array", "items": { "type": "string" } },
+    "related_instruments": { "type": "array", "items": { "type": "string" },
+      "description": "Tracker instrument ids. This is the join between the reactive and proactive halves of the job." },
+    "sensitivity": { "type": "string", "enum": ["routine", "elevated", "high", "critical"] },
+    "sensitivity_drivers": { "type": "array",
+      "items": { "type": "string",
+        "enum": ["litigation_risk", "media_interest", "executive_exposure", "precedent_setting",
+                 "cross_jurisdictional_consistency", "user_safety", "government_relations"] } },
+    "sme_owners": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["function", "question"],
+        "additionalProperties": false,
+        "properties": {
+          "function": { "type": "string",
+            "enum": ["legal", "policy", "product", "engineering", "ops", "comms", "data", "security", "gov_affairs"] },
+          "question": { "type": "string", "description": "The specific question this SME owns. Not 'review the draft'." },
+          "owner": { "type": ["string", "null"] },
+          "due": { "type": ["string", "null"], "format": "date-time" },
+          "status": { "type": "string", "enum": ["not_started", "in_progress", "delivered", "late", "waived"], "default": "not_started" }
+        }
+      }
+    },
+    "prior_filings": { "type": "array", "items": { "type": "string" },
+      "description": "Inquiry ids whose answers constrain this one. Populated at triage; the basis of the consistency check." },
+    "commitments_made": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["commitment", "owner", "due"],
+        "additionalProperties": false,
+        "properties": {
+          "commitment": { "type": "string" },
+          "owner": { "type": "string" },
+          "due": { "type": "string", "format": "date" },
+          "resourced": { "type": "boolean", "default": false,
+            "description": "Whether anyone has actually funded this. Unresourced commitments to regulators are the quiet failure mode." }
+        }
+      }
+    },
+    "status": { "type": "string",
+      "enum": ["intake", "triaged", "drafting", "in_review", "approved", "filed", "closed", "withdrawn"],
+      "default": "intake" },
+    "filed": { "type": ["string", "null"], "format": "date-time" },
+    "notes": { "type": ["string", "null"] }
+  }
+}

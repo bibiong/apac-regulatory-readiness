@@ -1,0 +1,58 @@
+# Response plan template — stages expressed as a share of the working time available.
+#
+# Proportional rather than fixed-duration because the same shape has to work for a
+# 3-hour statutory clock and a 6-week consultation. What changes with the clock is
+# not which stages happen but how much of each you get.
+#
+# Ordering is the order of execution. The generator schedules backwards from the
+# deadline, so the last stage ends at the deadline minus the filing buffer.
+
+version: 1.1
+working_day:
+  start_hour: 9
+  end_hour: 18
+  # Response teams for APAC sit across SGT/IST/AEST. Saturday and Sunday are excluded
+  # by default; a P1 override switches to 24/7 in the generator.
+  weekend_days: [5, 6]
+
+filing_buffer_pct: 8   # never plan to file at the instant of the deadline
+
+stages:
+  - name: Intake and clock confirmation
+    share: 0.05
+    owner: Program manager
+    exit_criteria: >-
+      Legal basis identified, deadline confirmed against the instrument text rather than
+      the covering email, extension availability established.
+  - name: Scoping and SME assignment
+    share: 0.10
+    owner: Program manager
+    exit_criteria: >-
+      Every question in the inquiry decomposed and assigned to a named individual, with
+      a per-question due date. Not "legal to review" — a specific question and a person.
+  - name: Prior-filing consistency scan
+    share: 0.07
+    owner: Program manager + Legal
+    exit_criteria: >-
+      Prior filings on the same topic in any jurisdiction retrieved and any divergence
+      flagged before drafting starts, not after.
+  - name: SME drafting
+    share: 0.35
+    owner: Named SMEs
+    exit_criteria: All assigned questions answered in writing with supporting evidence referenced.
+  - name: Consolidation and narrative
+    share: 0.15
+    owner: Program manager
+    exit_criteria: Single voice, single document, gaps explicit rather than papered over.
+  - name: Legal and policy review
+    share: 0.15
+    owner: Legal + Policy
+    exit_criteria: Accuracy, privilege, and commitment language cleared.
+  - name: Pre-submission QA
+    share: 0.08
+    owner: Program manager
+    exit_criteria: QA checklist complete and signed. See workflow/templates/qa-checklist.md.
+  - name: Approval and filing
+    share: 0.05
+    owner: Accountable approver
+    exit_criteria: Filed through the channel the regulator specified, with receipt captured.

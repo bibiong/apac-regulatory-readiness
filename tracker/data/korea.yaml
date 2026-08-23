@@ -1,0 +1,68 @@
+# South Korea
+- id: kr-pipa-2026-amendments
+  jurisdiction: South Korea
+  jurisdiction_code: KR
+  instrument: Personal Information Protection Act — 2026 Amendments
+  instrument_local: 개인정보 보호법
+  regulator: PIPC
+  regulator_full: Personal Information Protection Commission
+  status: passed
+  passed: 2026-03-10
+  commenced: 2026-09-11
+  themes: [data_protection]
+  obligations:
+    - ref: general
+      summary: >-
+        Notify the Commission without delay on becoming aware of the possibility of a
+        breach — a lower and earlier trigger than confirmed-breach standards elsewhere.
+      owner_function: [legal, security, ops]
+      clock: Without delay from awareness of possibility
+      evidence_required: >-
+        Awareness timeline. The trigger is suspicion, so the record must show what was known
+        and when, not merely what was later confirmed.
+    - ref: general
+      summary: >-
+        Personal supervisory liability attaches to the head of the institution for systemic
+        compliance failures.
+      owner_function: [legal, policy]
+      clock: null
+      evidence_required: Governance records demonstrating executive oversight
+    - ref: general
+      summary: Stricter conditions on overseas transfers of personal data.
+      owner_function: [legal, engineering, data]
+      clock: null
+      evidence_required: Transfer impact assessments and routing documentation
+  deadlines:
+    - date: 2026-09-11
+      event: Amendments take effect
+      certainty: fixed
+    - date: 2027-07-01
+      event: Mandatory ISMS-P certification for major controllers takes effect
+      certainty: fixed
+  penalty:
+    max_financial: Up to 10% of total annual turnover
+    basis: >-
+      Baseline remains 3% of relevant revenue. A punitive track permits up to 10% of total
+      turnover for systemic failures — repeat serious violations within three years,
+      incidents affecting more than 10 million individuals, or blatant failure to follow
+      previous regulatory orders.
+    personal_liability: true
+    non_financial: Corrective orders
+  enforcement_signals: []
+  meta_exposure: Applies to controllers processing Korean personal data, including foreign platforms.
+  sources:
+    - title: "IAPP: South Korea overhauls PIPA and ties fines to CEO accountability"
+      url: https://iapp.org/news/a/south-korea-overhauls-pipa-and-ties-fines-to-ceo-accountability
+      kind: secondary
+      accessed: 2026-08-23
+    - title: Personal Information Protection Commission
+      url: https://www.pipc.go.kr/eng/
+      kind: regulator
+      accessed: 2026-08-23
+  confidence: medium
+  notes: >-
+    Highest-priority readiness item in the tracker on time-to-obligation. Turnover-based
+    fines plus personal liability convert a legal risk into a CFO- and CEO-visible risk,
+    which changes the internal escalation path, not just the exposure.
+  last_verified: 2026-08-23
+  verified_by: B. Ong

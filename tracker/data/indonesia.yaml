@@ -1,0 +1,50 @@
+# Indonesia
+- id: id-pp-tunas-2025
+  jurisdiction: Indonesia
+  jurisdiction_code: ID
+  instrument: Government Regulation 17/2025 on Child Protection in Digital Space ("PP Tunas")
+  regulator: Komdigi
+  regulator_full: Ministry of Communication and Digital Affairs
+  status: in_force
+  passed: 2025-03-28
+  commenced: 2026-03-01
+  themes: [age_assurance]
+  obligations:
+    - ref: general
+      summary: >-
+        Tiered access by service risk classification — ages 13–15 with parental consent for
+        medium-risk services; 16–17 with parental consent for high-risk services, a category
+        that includes mainstream social media.
+      owner_function: [product, engineering, policy, legal]
+      clock: null
+      evidence_required: Risk classification rationale; consent capture records
+    - ref: general
+      summary: Deploy "age inferential" technology rather than relying on self-declaration alone.
+      owner_function: [engineering, product, data]
+      clock: null
+      evidence_required: Inference model accuracy metrics and error-rate reporting
+  deadlines:
+    - date: 2026-03-01
+      event: PP Tunas takes effect
+      certainty: fixed
+  penalty:
+    max_financial: null
+    basis: null
+    personal_liability: false
+    non_financial: Administrative sanctions including access restriction under MR5/PP71
+  enforcement_signals: []
+  meta_exposure: >-
+    Facebook, Instagram and Threads were reported among the eight platforms targeted in
+    phase one implementation.
+  sources:
+    - title: Kementerian Komunikasi dan Digital (Komdigi)
+      url: https://www.komdigi.go.id/
+      kind: regulator
+      accessed: 2026-08-23
+  confidence: low
+  notes: >-
+    Indonesia mandates age inference where other regimes merely permit it — the clearest
+    example in the tracker of two jurisdictions converging on a theme while diverging on
+    the acceptable method. Single-source; upgrade confidence on primary text review.
+  last_verified: 2026-08-23
+  verified_by: B. Ong

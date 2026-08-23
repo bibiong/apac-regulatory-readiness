@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Philippines — APAC Regulation Tracker</title>
+<meta name="description" content="A maintained, cited dataset of platform-relevant regulation across ten APAC jurisdictions.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%2317140F'/><text y='72' x='50' text-anchor='middle' font-family='Helvetica,Arial' font-weight='600' font-size='58' fill='%23B26136'>A</text></svg>">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --accent:#B26136;--accent-deep:#8F4A26;--accent-soft:#F0E2D6;
+  --ink:#17140F;--ink-2:#45403A;--ink-3:#756E65;
+  --bg:#FBFAF8;--card:#FFFFFF;
+  --line:rgba(23,20,15,.13);--line-soft:rgba(23,20,15,.07);
+}
+@media (prefers-color-scheme:dark){
+  :root{--ink:#F2EFEA;--ink-2:#C4BEB5;--ink-3:#8E877D;--bg:#141210;--card:#1C1917;
+        --line:rgba(242,239,234,.15);--line-soft:rgba(242,239,234,.08);--accent-soft:#3A2A1F}
+}
+body{background:var(--bg);color:var(--ink);
+  font:400 16px/1.6 -apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(1rem,4vw,2.5rem)}
+header.top{border-bottom:1px solid var(--line);padding:2.5rem 0 2rem;margin-bottom:2.5rem}
+h1{font-size:clamp(1.6rem,3.4vw,2.4rem);line-height:1.15;letter-spacing:-.02em;font-weight:700}
+h2{font-size:1.25rem;letter-spacing:-.01em;margin:2.5rem 0 1rem;font-weight:600}
+h3{font-size:1.02rem;font-weight:600;margin:0 0 .35rem}
+p{color:var(--ink-2);max-width:74ch}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.eyebrow{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
+  font-weight:600;margin-bottom:.7rem}
+.lede{font-size:1.05rem;margin-top:.9rem}
+.meta{color:var(--ink-3);font-size:.84rem;margin-top:1rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);margin:2rem 0;border-radius:6px;overflow:hidden}
+.stat{background:var(--card);padding:1rem 1.1rem}
+.stat b{display:block;font-size:1.5rem;letter-spacing:-.02em;color:var(--accent)}
+.stat span{font-size:.76rem;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em}
+table{width:100%;border-collapse:collapse;font-size:.9rem;margin:1rem 0}
+th{text-align:left;font-size:.71rem;text-transform:uppercase;letter-spacing:.09em;
+  color:var(--ink-3);padding:.6rem .7rem;border-bottom:1.5px solid var(--line);font-weight:600}
+td{padding:.72rem .7rem;border-bottom:1px solid var(--line-soft);vertical-align:top;color:var(--ink-2)}
+td.name{color:var(--ink);font-weight:500}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--card)}
+.pill{display:inline-block;font-size:.7rem;padding:.16rem .5rem;border-radius:99px;
+  border:1px solid var(--line);white-space:nowrap;color:var(--ink-2)}
+.pill.live{background:var(--accent-soft);border-color:transparent;color:var(--accent-deep)}
+.pill.soon{border-color:var(--accent);color:var(--accent)}
+.conf{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.conf.low{color:var(--accent-deep)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;
+  padding:1.3rem 1.4rem;margin-bottom:1rem}
+.jgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;margin:1.5rem 0}
+.jcard{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:1.1rem 1.2rem;
+  display:block;color:inherit}
+.jcard:hover{border-color:var(--accent);text-decoration:none}
+.jcard .n{font-size:1.7rem;line-height:1}
+.jcard .c{font-size:1rem;font-weight:600;color:var(--ink);margin:.5rem 0 .2rem}
+.jcard .s{font-size:.8rem;color:var(--ink-3)}
+.ob{border-left:2px solid var(--accent-soft);padding:.1rem 0 .1rem .9rem;margin:.7rem 0}
+.ob .clk{color:var(--accent-deep);font-weight:600;font-size:.82rem}
+.note{background:var(--accent-soft);border-radius:6px;padding:.9rem 1.1rem;margin:1rem 0;
+  font-size:.9rem;color:var(--ink-2)}
+@media (prefers-color-scheme:dark){.note{background:#241A13}}
+.src{font-size:.82rem;color:var(--ink-3)}
+footer{border-top:1px solid var(--line);margin-top:3.5rem;padding:1.8rem 0 3rem;
+  font-size:.82rem;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between}
+.back{font-size:.85rem;display:inline-block;margin-bottom:1.2rem}
+</style></head><body>
+<div class="wrap"><a class="back" href="../index.html">← All jurisdictions</a>
+<header class="top">
+<div class="eyebrow">PH</div>
+<h1>🇵🇭 Philippines</h1>
+<p class="lede">1 tracked instrument.</p>
+</header>
+<div class="card" id="ph-anti-financial-scamming">
+<h3>Anti-Financial Account Scamming and related online fraud measures</h3>
+<p style="margin:.6rem 0"><span class="pill">In force</span> <span class="pill">Bangko Sentral ng Pilipinas and Department of Justice</span> <span class="pill">Scam &amp; fraud</span></p>
+<h4 style='margin:1rem 0 .3rem;font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;color:var(--ink-3)'>Obligations</h4>
+<div class="ob">
+<div>Expanded institutional obligations against money-mule and social-engineering activity, with coordination duties across financial institutions and platforms.</div>
+<div class="src"><b>general</b> · legal, ops, policy</div>
+<div class="src">Evidence: Referral and coordination records</div>
+</div>
+<div class="note">Platform obligations arise mainly through coordination duties rather than direct designation. Monitored rather than actively managed.</div>
+<p style="margin-top:.8rem">Deliberately the thinnest entry in the tracker. Carried at low confidence and monitor posture rather than written up to a depth the sourcing does not support — see docs/METHODOLOGY.md on why coverage claims are scoped.</p>
+<h4 style='margin:1rem 0 .3rem;font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;color:var(--ink-3)'>Sources</h4>
+<p class="src"><a href="https://www.bsp.gov.ph/">Bangko Sentral ng Pilipinas</a> <span class="pill">regulator</span></p>
+<p class="src" style="margin-top:.8rem">Confidence <b>low</b> · last verified 2026-08-23 by B. Ong</p>
+</div>
+<footer>
+  <div>APAC Regulatory Readiness · Brenda Ong · <a href="../../DISCLAIMER.md">Disclaimer</a></div>
+  <div>Not legal advice. Verify against cited primary sources.</div>
+</footer>
+</div></body></html>

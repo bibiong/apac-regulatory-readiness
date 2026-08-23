@@ -1,0 +1,40 @@
+# Thailand
+- id: th-etda-advertiser-kyc-2026
+  jurisdiction: Thailand
+  jurisdiction_code: TH
+  instrument: ETDA notification requiring advertiser identity verification on social platforms
+  regulator: ETDA
+  regulator_full: Electronic Transactions Development Agency
+  status: passed
+  commenced: 2026-11-01
+  themes: [scam_fraud]
+  obligations:
+    - ref: general
+      summary: >-
+        Verify advertiser identity before publishing paid content on social media platforms.
+      owner_function: [product, engineering, ops, legal]
+      clock: Pre-publication
+      evidence_required: Verification records per advertiser; rejection and appeal logs
+  deadlines:
+    - date: 2026-11-01
+      event: Advertiser-KYC notification takes effect
+      certainty: fixed
+  penalty:
+    max_financial: null
+    basis: null
+    personal_liability: false
+    non_financial: Administrative measures under the digital platform services regime
+  enforcement_signals: []
+  meta_exposure: Applies to social media platforms carrying paid advertising in Thailand.
+  sources:
+    - title: Electronic Transactions Development Agency (ETDA)
+      url: https://www.etda.or.th/en/
+      kind: regulator
+      accessed: 2026-08-23
+  confidence: low
+  notes: >-
+    Part of the regional anti-scam cluster with SG, PH and HK, where controls increasingly
+    bind banks, telcos and platforms together through national anti-scam centre structures.
+    Ads-integrity engineering is the binding constraint, not policy.
+  last_verified: 2026-08-23
+  verified_by: B. Ong

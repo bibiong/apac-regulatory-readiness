@@ -1,0 +1,95 @@
+# FICTIONAL WORKED EXAMPLE. Not a real inquiry, not a real regulator communication,
+# not a description of any company's internal process. Built to exercise the schema,
+# the rubric, and the timeline generator end to end.
+id: INQ-2026-014
+received: 2026-04-07T09:12:00
+logged: 2026-04-07T09:40:00
+jurisdiction: Australia
+regulator: eSafety Commissioner
+channel: portal
+legal_basis: >-
+  Compulsory information-gathering notice issued under the Online Safety Act 2021 (Cth)
+  in connection with Social Media Minimum Age obligations.
+compelled: true
+inquiry_type: information_request
+deadline: 2026-04-28T17:00:00
+deadline_source: statutory
+extension_available: false
+subject: >-
+  Notice requiring production of information on age assurance methods deployed, detection
+  and removal volumes for accounts assessed as under 16, false-positive rates, and the
+  appeals process and its outcomes, for the period since commencement.
+products_in_scope: [Social Feed, Photo Sharing]
+related_instruments: [au-smma-2024, au-bose]
+sensitivity: high
+sensitivity_drivers:
+  - litigation_risk
+  - media_interest
+  - precedent_setting
+  - cross_jurisdictional_consistency
+
+triage:
+  compulsion: compelled_with_penalty
+  sensitivity: high
+  consistency_exposure: same_topic_filed_elsewhere
+  remediation_lead_time: engineering_weeks
+  overrides:
+    - regulator_alleges_non_compliance
+
+sme_owners:
+  - function: engineering
+    question: >-
+      Which age assurance signals are in production for Australian traffic, since when,
+      and what is the measured accuracy of each against a labelled holdout?
+    owner: Age Assurance eng lead
+    due: 2026-04-15T17:00:00
+    status: not_started
+  - function: data
+    question: >-
+      Removal and detection volumes by month since 10 Dec 2025, with the query definitions
+      and the lineage from production tables to the reported figure.
+    owner: Integrity analytics
+    due: 2026-04-15T17:00:00
+    status: not_started
+  - function: ops
+    question: >-
+      Appeals received, upheld, and overturned, with median time to resolution and the
+      reason codes for overturns.
+    owner: Appeals ops manager
+    due: 2026-04-16T17:00:00
+    status: not_started
+  - function: policy
+    question: >-
+      How is "reasonable steps" being interpreted for this filing, and is that
+      interpretation consistent with what was said to Indonesian and Vietnamese regulators
+      on minor access?
+    owner: APAC policy lead
+    due: 2026-04-17T17:00:00
+    status: not_started
+  - function: legal
+    question: >-
+      Which statements create ongoing commitments, and which figures require qualification
+      to remain accurate if the underlying metric definition later changes?
+    owner: Regional counsel
+    due: 2026-04-21T17:00:00
+    status: not_started
+
+prior_filings:
+  - INQ-2026-002
+  - INQ-2025-118
+
+commitments_made:
+  - commitment: >-
+      Provide a supplementary update on false-positive rates once the revised age-inference
+      model completes evaluation.
+    owner: Age Assurance eng lead
+    due: 2026-07-31
+    resourced: false
+
+status: triaged
+notes: >-
+  The hard part of this notice is not the numbers, it is that the numbers must be
+  consistent with figures already given to two other regulators who asked a slightly
+  different question about the same population. The consistency scan is scheduled before
+  drafting for exactly that reason. The unresourced commitment above is flagged
+  deliberately — it was made to a regulator and nobody has funded it.

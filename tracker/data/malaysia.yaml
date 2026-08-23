@@ -1,0 +1,45 @@
+# Malaysia
+- id: my-online-safety-act-2025
+  jurisdiction: Malaysia
+  jurisdiction_code: MY
+  instrument: Online Safety Act 2025
+  regulator: MCMC
+  regulator_full: Malaysian Communications and Multimedia Commission
+  status: in_force
+  commenced: 2026-01-01
+  themes: [content_takedown, age_assurance]
+  obligations:
+    - ref: general
+      summary: >-
+        Licensed providers must act on harmful content within short statutory response
+        deadlines and maintain user reporting and appeal mechanisms.
+      owner_function: [ops, legal, policy]
+      clock: Short statutory deadlines set by the Act and MCMC directions
+      evidence_required: Report-to-action timestamps; appeal outcomes
+  deadlines:
+    - date: 2026-01-01
+      event: Act in force; major providers deemed licensed
+      certainty: fixed
+  penalty:
+    max_financial: Up to RM 500,000
+    basis: Fixed sum, with imprisonment up to 5 years available for certain offences
+    personal_liability: true
+    non_financial: Licence conditions or withdrawal
+  enforcement_signals: []
+  meta_exposure: >-
+    Facebook, Instagram and WhatsApp were reported among providers deemed licensed from
+    1 January 2026 under s.46A CMA 1998 deeming provisions, on the 8m+ user threshold.
+  sources:
+    - title: Malaysian Communications and Multimedia Commission
+      url: https://www.mcmc.gov.my/
+      kind: regulator
+      accessed: 2026-08-23
+  confidence: low
+  notes: >-
+    Licensing is the structural point. A licence converts a foreign service into a
+    regulated entity with standing reporting duties and a licence that can be conditioned
+    or withdrawn — moving the relationship from episodic (they write, you answer) to
+    continuous (you report, they supervise). Continuous supervision is what makes a
+    readiness programme necessary rather than a response queue.
+  last_verified: 2026-08-23
+  verified_by: B. Ong

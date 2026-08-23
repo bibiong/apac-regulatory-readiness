@@ -1,0 +1,76 @@
+# Vietnam
+- id: vn-decree-147-2024
+  jurisdiction: Vietnam
+  jurisdiction_code: VN
+  instrument: Decree 147/2024/ND-CP on management of internet services and online information
+  regulator: MIC-VN
+  regulator_full: Ministry of Information and Communications
+  status: in_force
+  commenced: 2024-12-25
+  themes: [age_assurance, localisation, content_takedown]
+  obligations:
+    - ref: general
+      summary: >-
+        Users under 16 must have accounts registered via a parent or guardian's identity.
+      owner_function: [product, legal, ops]
+      clock: null
+      evidence_required: Registration flow records linking guardian identity
+    - ref: general
+      summary: Real-name account registration and data localisation duties for covered services.
+      owner_function: [legal, engineering, data]
+      clock: null
+      evidence_required: Storage location documentation
+  deadlines: []
+  penalty:
+    max_financial: null
+    basis: Administrative fines
+    personal_liability: false
+    non_financial: Service suspension; access restriction
+  enforcement_signals: []
+  meta_exposure: Applies to cross-border social media services serving Vietnamese users.
+  sources:
+    - title: Ministry of Information and Communications, Vietnam
+      url: https://english.mic.gov.vn/
+      kind: regulator
+      accessed: 2026-08-23
+  confidence: low
+  notes: Re-verify against the Vietnamese-language decree text before relying on specifics.
+  last_verified: 2026-08-23
+  verified_by: B. Ong
+
+- id: vn-draft-decree-minor-posting-2026
+  jurisdiction: Vietnam
+  jurisdiction_code: VN
+  instrument: Draft decree restricting posting and interaction by users under 16
+  regulator: MCST
+  regulator_full: Ministry of Culture, Sports and Tourism
+  status: consultation
+  themes: [age_assurance]
+  obligations:
+    - ref: general
+      summary: >-
+        As drafted, users under 16 could retain accounts but lose the ability to post,
+        comment or react, with technical identification of child users mandated.
+      owner_function: [product, engineering, policy]
+      clock: null
+      evidence_required: null
+  deadlines: []
+  penalty:
+    max_financial: null
+    basis: null
+    personal_liability: false
+    non_financial: null
+  enforcement_signals: []
+  meta_exposure: Would apply to social media services serving Vietnamese users.
+  sources:
+    - title: Ministry of Culture, Sports and Tourism, Vietnam
+      url: https://bvhttdl.gov.vn/
+      kind: regulator
+      accessed: 2026-08-23
+  confidence: low
+  notes: >-
+    Consultation stage — a shaping opportunity rather than a compliance obligation.
+    Consultations are named explicitly in the JD and are the workstream most often
+    under-resourced because they carry a soft deadline.
+  last_verified: 2026-08-23
+  verified_by: B. Ong

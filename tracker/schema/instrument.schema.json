@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/bibiong/apac-regulatory-readiness/tracker/schema/instrument.schema.json",
+  "title": "Platform-relevant regulatory instrument (APAC tracker)",
+  "type": "object",
+  "required": [
+    "id", "jurisdiction", "instrument", "regulator", "status",
+    "themes", "obligations", "sources", "last_verified", "verified_by"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z]{2}-[a-z0-9-]+$",
+      "description": "Stable key: ISO-3166 alpha-2 lowercase, hyphen, short slug. Never reused, never renamed."
+    },
+    "jurisdiction": { "type": "string" },
+    "jurisdiction_code": { "type": "string", "pattern": "^[A-Z]{2}$" },
+    "instrument": { "type": "string", "description": "Formal short title as the regulator writes it." },
+    "instrument_local": { "type": "string", "description": "Local-language title where one exists." },
+    "citation": { "type": "string", "description": "Formal legal citation where available." },
+    "regulator": { "type": "string" },
+    "regulator_full": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "consultation", "passed", "in_force", "partially_in_force", "superseded"],
+      "description": "draft = not yet introduced or under ministry drafting; consultation = public comment open; passed = enacted but not commenced; in_force = operative."
+    },
+    "commenced": { "type": ["string", "null"], "format": "date" },
+    "passed": { "type": ["string", "null"], "format": "date" },
+    "themes": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": ["age_assurance", "content_takedown", "data_protection", "scam_fraud",
+                 "transparency_reporting", "licensing", "ai_synthetic_media", "localisation"]
+      }
+    },
+    "obligations": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["ref", "summary", "owner_function"],
+        "additionalProperties": false,
+        "properties": {
+          "ref": { "type": "string", "description": "Provision reference, e.g. 'r.3(1)(b)'. 'general' if the duty is systemic." },
+          "summary": { "type": "string", "minLength": 20 },
+          "owner_function": {
+            "type": "array", "minItems": 1,
+            "items": { "type": "string",
+              "enum": ["legal", "policy", "product", "engineering", "ops", "comms", "data", "security"] }
+          },
+          "clock": { "type": ["string", "null"], "description": "Statutory response window, if any. Free text because units differ (hours/days/annual)." },
+          "evidence_required": { "type": ["string", "null"], "description": "What must be retained to demonstrate compliance." }
+        }
+      }
+    },
+    "deadlines": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["date", "event"],
+        "additionalProperties": false,
+        "properties": {
+          "date": { "type": "string", "format": "date" },
+          "event": { "type": "string" },
+          "certainty": { "type": "string", "enum": ["fixed", "expected", "speculative"], "default": "fixed" }
+        }
+      }
+    },
+    "penalty": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "max_financial": { "type": ["string", "null"] },
+        "basis": { "type": ["string", "null"], "description": "Fixed sum, turnover percentage, or per-contravention." },
+        "personal_liability": { "type": "boolean", "default": false },
+        "non_financial": { "type": ["string", "null"], "description": "Licence conditions, blocking, loss of safe harbour." }
+      }
+    },
+    "enforcement_signals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["date", "signal", "source"],
+        "additionalProperties": false,
+        "properties": {
+          "date": { "type": "string", "format": "date" },
+          "signal": { "type": "string" },
+          "source": { "type": "string", "format": "uri" }
+        }
+      }
+    },
+    "meta_exposure": {
+      "type": ["string", "null"],
+      "description": "Publicly reported applicability to Meta services. Public sources only."
+    },
+    "sources": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["title", "url", "kind"],
+        "additionalProperties": false,
+        "properties": {
+          "title": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "kind": { "type": "string", "enum": ["primary", "regulator", "secondary"],
+            "description": "primary = the instrument text; regulator = the regulator's own publication; secondary = law firm or press analysis." },
+          "accessed": { "type": "string", "format": "date" }
+        }
+      }
+    },
+    "confidence": {
+      "type": "string", "enum": ["high", "medium", "low"], "default": "medium",
+      "description": "high = primary source read directly; medium = regulator publication; low = secondary reporting only."
+    },
+    "notes": { "type": ["string", "null"] },
+    "last_verified": { "type": "string", "format": "date" },
+    "verified_by": { "type": "string" }
+  }
+}

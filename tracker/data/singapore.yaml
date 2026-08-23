@@ -1,0 +1,180 @@
+# Singapore — platform-relevant regulatory instruments
+# Maintainer note: SG is a "depth" jurisdiction for this tracker. Verify monthly.
+- id: sg-osraa-2025
+  jurisdiction: Singapore
+  jurisdiction_code: SG
+  instrument: Online Safety (Relief and Accountability) Act 2025
+  citation: Act 35 of 2025
+  regulator: OSC
+  regulator_full: Online Safety Commission
+  status: partially_in_force
+  passed: 2025-11-05
+  commenced: 2026-06-29
+  themes: [content_takedown]
+  obligations:
+    - ref: Part 3
+      summary: >-
+        Platforms may receive directions from the Commission requiring removal, restriction
+        of access, or disabling of accounts in respect of specified online harms.
+      owner_function: [legal, ops, policy]
+      clock: Direction-specific; set by the Commission on issue
+      evidence_required: Direction register, action taken, timestamps, and reinstatement decisions
+    - ref: Part 2
+      summary: >-
+        Statutory torts define duties for Communicators, Administrators and Platforms,
+        creating a civil route to relief independent of regulator action.
+      owner_function: [legal, policy]
+      clock: null
+      evidence_required: Records sufficient to respond to a civil claim or identity-disclosure order
+  deadlines:
+    - date: 2026-06-29
+      event: OSC commences operations; statutory tort provisions in effect
+      certainty: fixed
+  penalty:
+    max_financial: null
+    basis: Non-compliance with a direction is an offence; civil liability under the statutory torts
+    personal_liability: false
+    non_financial: Access-disabling and account-restriction directions
+  enforcement_signals:
+    - date: 2026-06-29
+      signal: OSC begins first phase covering harassment, doxxing, stalking, intimate image abuse, image-based child abuse
+      source: https://www.mddi.gov.sg/newsroom/the-online-safety-commission-begins-operations-on-29-june-2026-/
+  meta_exposure: >-
+    Applies to social media services accessible in Singapore. No platform-specific
+    designation published at commencement.
+  sources:
+    - title: Online Safety (Relief and Accountability) Act 2025 — Singapore Statutes Online
+      url: https://sso.agc.gov.sg/Act/OSRAA2025
+      kind: primary
+      accessed: 2026-08-23
+    - title: "MDDI: Online Safety Commission and OSRAA to start on 29 June 2026"
+      url: https://www.mddi.gov.sg/newsroom/online-safety-commission-and-online-safety--relief-and-accountability--act-2025-to-start-on-29-june-2026/
+      kind: regulator
+      accessed: 2026-08-23
+  confidence: high
+  notes: >-
+    Newest regulator in the region. First operating year means process and escalation
+    thresholds are still forming — highest-variance relationship in APAC.
+  last_verified: 2026-08-23
+  verified_by: B. Ong
+
+- id: sg-code-online-safety-sms
+  jurisdiction: Singapore
+  jurisdiction_code: SG
+  instrument: Code of Practice for Online Safety — Social Media Services
+  regulator: IMDA
+  regulator_full: Infocomm Media Development Authority
+  status: in_force
+  commenced: 2023-07-18
+  themes: [content_takedown, transparency_reporting, age_assurance]
+  obligations:
+    - ref: general
+      summary: >-
+        Designated social media services must maintain systems and processes to mitigate
+        exposure to harmful content, including minor-specific safeguards and reporting tools.
+      owner_function: [policy, product, ops]
+      clock: null
+      evidence_required: Systems documentation, tooling screenshots, process descriptions
+    - ref: general
+      summary: >-
+        Submit an annual online safety compliance report to IMDA describing measures taken
+        and their effectiveness.
+      owner_function: [policy, data, legal]
+      clock: Annual
+      evidence_required: Report source metrics with documented lineage back to production systems
+  deadlines: []
+  penalty:
+    max_financial: Up to SGD 1,000,000
+    basis: Fixed sum under the Broadcasting Act for non-compliance with directions
+    personal_liability: false
+    non_financial: Access-blocking orders
+  enforcement_signals: []
+  meta_exposure: >-
+    Facebook and Instagram are among the designated social media services subject to the Code.
+  sources:
+    - title: "IMDA: Codes of Practice and Guidelines"
+      url: https://www.imda.gov.sg/regulations-and-licensing-listing/codes-of-practice-and-guidelines
+      kind: regulator
+      accessed: 2026-08-23
+  confidence: medium
+  notes: >-
+    The annual report is the recurring transparency obligation most likely to expose a
+    data-lineage gap — the report asks questions internal metrics were not shaped to answer.
+  last_verified: 2026-08-23
+  verified_by: B. Ong
+
+- id: sg-ocha-2023
+  jurisdiction: Singapore
+  jurisdiction_code: SG
+  instrument: Online Criminal Harms Act 2023
+  regulator: MHA
+  regulator_full: Ministry of Home Affairs
+  status: in_force
+  commenced: 2024-02-01
+  themes: [content_takedown, scam_fraud]
+  obligations:
+    - ref: Part 3
+      summary: >-
+        Comply with directions to disable access to content, accounts or services used for
+        criminal activity, including scam and malicious cyber activity.
+      owner_function: [legal, ops]
+      clock: Direction-specific, typically short
+      evidence_required: Direction log with receipt, action, and completion timestamps
+  deadlines: []
+  penalty:
+    max_financial: Up to SGD 1,000,000
+    basis: Fixed sum per contravention
+    personal_liability: false
+    non_financial: Access-blocking; app removal orders
+  enforcement_signals: []
+  meta_exposure: Applies to online services accessible in Singapore.
+  sources:
+    - title: Online Criminal Harms Act 2023 — Singapore Statutes Online
+      url: https://sso.agc.gov.sg/Act/OCHA2023
+      kind: primary
+      accessed: 2026-08-23
+  confidence: medium
+  notes: Sits alongside the anti-scam cluster obligations in TH, HK and PH.
+  last_verified: 2026-08-23
+  verified_by: B. Ong
+
+- id: sg-pdpa
+  jurisdiction: Singapore
+  jurisdiction_code: SG
+  instrument: Personal Data Protection Act 2012
+  regulator: PDPC
+  regulator_full: Personal Data Protection Commission
+  status: in_force
+  commenced: 2014-07-02
+  themes: [data_protection]
+  obligations:
+    - ref: Part 6A
+      summary: >-
+        Notify the Commission of a notifiable data breach as soon as practicable, and in any
+        case within 3 calendar days of assessing it to be notifiable.
+      owner_function: [legal, security, data]
+      clock: 3 calendar days to the Commission
+      evidence_required: Assessment record establishing when the breach was determined notifiable
+  deadlines: []
+  penalty:
+    max_financial: Up to 10% of annual turnover in Singapore, or SGD 1,000,000, whichever is higher
+    basis: Turnover percentage with a floor
+    personal_liability: false
+    non_financial: Directions to stop collection or destroy data
+  enforcement_signals: []
+  meta_exposure: Applies to organisations processing personal data in Singapore.
+  sources:
+    - title: Personal Data Protection Act 2012 — Singapore Statutes Online
+      url: https://sso.agc.gov.sg/Act/PDPA2012
+      kind: primary
+      accessed: 2026-08-23
+    - title: PDPC — data breach notification guidance
+      url: https://www.pdpc.gov.sg/
+      kind: regulator
+      accessed: 2026-08-23
+  confidence: medium
+  notes: >-
+    The 3-day clock runs from the assessment decision, not from discovery — which makes the
+    assessment timestamp the single most contested fact in any breach filing.
+  last_verified: 2026-08-23
+  verified_by: B. Ong

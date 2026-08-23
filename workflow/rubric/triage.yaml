@@ -1,0 +1,105 @@
+# Triage rubric — regulatory inquiry prioritisation
+#
+# Design intent: priority must be computable from fields captured at intake, by a
+# coordinator who is not a lawyer, at 2am, without convening anyone. Anything that
+# requires judgement to score is a field the intake form should have captured instead.
+#
+# Score = sum of factor scores (each already weighted). Bands at the bottom.
+
+version: 1.2
+last_reviewed: 2026-08-23
+
+factors:
+  compulsion:
+    max: 30
+    rationale: >-
+      Legal compulsion is the single strongest predictor of consequence. A missed
+      voluntary deadline costs goodwill; a missed statutory one costs money and,
+      in some jurisdictions, safe harbour.
+    levels:
+      compelled_with_penalty: 30
+      compelled_no_stated_penalty: 22
+      voluntary_regulator_stated: 10
+      informal: 4
+
+  time_to_deadline:
+    max: 25
+    rationale: >-
+      Scored on working hours remaining, not calendar days, because APAC deadlines
+      routinely land across a weekend the drafting team does not work.
+    levels:
+      under_4_hours: 25
+      under_24_hours: 22
+      under_72_hours: 16
+      under_2_weeks: 9
+      over_2_weeks: 3
+
+  sensitivity:
+    max: 20
+    levels:
+      critical: 20
+      high: 15
+      elevated: 8
+      routine: 2
+
+  consistency_exposure:
+    max: 15
+    rationale: >-
+      Whether the answer will contradict, or be read against, something already filed
+      elsewhere. This factor is the one most often missed at intake and the one most
+      likely to cause damage months later.
+    levels:
+      contradicts_prior_filing_risk: 15
+      same_topic_filed_elsewhere: 11
+      novel_topic_precedent_setting: 8
+      no_prior_exposure: 0
+
+  remediation_lead_time:
+    max: 10
+    rationale: >-
+      How long the underlying fix takes if the honest answer is "we do not comply yet".
+      A low-impact obligation needing nine months of engineering outranks a high-impact
+      one needing a policy memo. This is the factor most prioritisation models omit.
+    levels:
+      engineering_quarters: 10
+      engineering_weeks: 7
+      process_change: 4
+      documentation_only: 1
+
+bands:
+  - min: 75
+    priority: P1
+    response: Immediate escalation. Named exec sponsor within 1 hour. Standing war-room cadence.
+    escalation: Regional lead + Legal + affected product VP, on receipt.
+  - min: 55
+    priority: P2
+    response: Same-day triage, named owner per SME question, daily written status.
+    escalation: Regional lead, within 4 working hours.
+  - min: 35
+    priority: P3
+    response: Triage within 1 working day, standard drafting cycle, weekly status.
+    escalation: Team lead at intake; escalate only on slippage.
+  - min: 0
+    priority: P4
+    response: Queue and batch. Review at weekly intake meeting.
+    escalation: None unless the deadline moves inside 2 weeks.
+
+# Overrides fire regardless of computed score. These exist because a purely additive
+# model will occasionally under-rate something that must never be under-rated.
+overrides:
+  - when: statutory_clock_under_4_hours
+    force: P1
+    why: >-
+      A sub-4-hour clock cannot survive a normal triage cycle. India's 2- and 3-hour
+      windows are the live example. The decision must already have been made.
+  - when: personal_liability_in_scope
+    force: P1
+    why: >-
+      Where an individual officer is exposed — Korea's PIPA supervisory liability,
+      Malaysia's imprisonment provisions — the internal escalation path changes shape
+      and the usual approval chain is not sufficient.
+  - when: regulator_alleges_non_compliance
+    force: P2
+    why: >-
+      An allegation converts an information exchange into an adversarial posture.
+      Anything filed becomes evidence.

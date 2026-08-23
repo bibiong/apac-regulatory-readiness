@@ -1,0 +1,247 @@
+# Gold standard for obligation extraction.
+# CONSTRUCTED excerpts in the drafting style of the named instruments. Not verbatim text.
+# See gold/README.md for the annotation protocol and its limitations.
+
+- id: gold-001
+  modelled_on: au-smma-2024
+  difficulty: easy
+  probe: Baseline — a single unambiguous duty with a named actor.
+  text: |
+    (1) An age-restricted social media platform must take reasonable steps to prevent
+    an age-restricted user from having an account with the platform.
+  obligations:
+    - id: o1
+      actor: age-restricted social media platform
+      summary: Take reasonable steps to prevent an age-restricted user from holding an account.
+      trigger: ongoing
+      deadline: null
+      carve_out: null
+      key_terms: [reasonable steps, account]
+  distractors: []
+
+- id: gold-002
+  modelled_on: in-it-amendment-rules-2026
+  difficulty: easy
+  probe: A hard numeric clock attached to a triggering event.
+  text: |
+    (2) Where an intermediary receives a notification from a court of competent
+    jurisdiction identifying synthetically generated information, the intermediary shall
+    remove or disable access to such information within three hours of receipt of the
+    notification.
+  obligations:
+    - id: o1
+      actor: intermediary
+      summary: Remove or disable access to court-notified synthetically generated information.
+      trigger: receipt of notification from a court of competent jurisdiction
+      deadline: 3 hours from receipt
+      carve_out: null
+      key_terms: [remove, three hours, court]
+  distractors: []
+
+- id: gold-003
+  modelled_on: id-pp-tunas-2025
+  difficulty: hard
+  probe: >-
+    A carve-out that reverses the duty for a defined subset. Missing the carve-out produces
+    over-compliance and a wrong scoping decision, which is why carve-outs are scored separately.
+  text: |
+    (3) An electronic system operator classified as high-risk shall obtain verifiable
+    parental consent before permitting a user aged 16 or 17 to create an account.
+    (4) Sub-regulation (3) does not apply to an electronic system operator whose service is
+    provided exclusively for educational purposes under a written agreement with an
+    accredited institution.
+  obligations:
+    - id: o1
+      actor: high-risk electronic system operator
+      summary: Obtain verifiable parental consent before permitting account creation by users aged 16 or 17.
+      trigger: account creation by a user aged 16 or 17
+      deadline: before account creation
+      carve_out: >-
+        Does not apply to operators providing the service exclusively for educational
+        purposes under a written agreement with an accredited institution.
+      key_terms: [parental consent, 16, account]
+  distractors:
+    - Models frequently extract the educational exclusion as a separate obligation rather than as a limit on o1.
+
+- id: gold-004
+  modelled_on: jp-idpa
+  difficulty: medium
+  probe: >-
+    A duty resting on the regulator, not the platform. A model that extracts every
+    modal verb as a platform duty will wrongly claim this one.
+  text: |
+    (5) The Minister shall publish, by 31 March each year, a list of designated large-scale
+    platform operators.
+    (6) A designated large-scale platform operator shall publish an annual report describing
+    the measures it has taken in response to rights-infringement notifications.
+  obligations:
+    - id: o1
+      actor: designated large-scale platform operator
+      summary: Publish an annual report on measures taken in response to rights-infringement notifications.
+      trigger: annual
+      deadline: annual
+      carve_out: null
+      key_terms: [annual report, rights-infringement]
+  distractors:
+    - Sub-regulation (5) is a duty on the Minister and must not be extracted as a platform obligation.
+
+- id: gold-005
+  modelled_on: kr-pipa-2026-amendments
+  difficulty: hard
+  probe: >-
+    Trigger is suspicion, not confirmation. A model that normalises this to the familiar
+    "upon becoming aware of a breach" loses the distinction that determines the clock.
+  text: |
+    (7) Where a personal information controller becomes aware of circumstances indicating
+    the possibility of a personal information breach, the controller shall notify the
+    Commission without delay, and in any event before completing its own verification of
+    whether a breach has occurred.
+  obligations:
+    - id: o1
+      actor: personal information controller
+      summary: >-
+        Notify the Commission without delay on becoming aware of circumstances indicating the
+        possibility of a breach, before completing internal verification.
+      trigger: awareness of circumstances indicating the possibility of a breach
+      deadline: without delay, and before completing internal verification
+      carve_out: null
+      key_terms: [notify, possibility, without delay]
+  distractors:
+    - The obligation triggers on possibility, not on a confirmed breach. Extractions reading "upon a breach" are wrong on the trigger.
+
+- id: gold-006
+  modelled_on: sg-code-online-safety-sms
+  difficulty: hard
+  probe: >-
+    A recital or purpose clause containing no operative duty. The correct answer is an
+    empty list. Tests whether a model will invent an obligation to fill the output schema.
+  text: |
+    (8) The purpose of this Part is to promote a safer online environment for users in
+    Singapore, having regard to the diversity of services to which this Part applies and
+    the desirability of proportionate measures.
+  obligations: []
+  distractors:
+    - Contains "promote", "safer", and "measures" — vocabulary that invites a fabricated duty. Any extraction here is a hallucination.
+
+- id: gold-007
+  modelled_on: my-online-safety-act-2025
+  difficulty: medium
+  probe: Two distinct duties in one sub-regulation, joined by "and". Tests decomposition.
+  text: |
+    (9) A licensed provider shall implement a mechanism enabling users to report harmful
+    content and shall acknowledge each report within twenty-four hours of receipt.
+  obligations:
+    - id: o1
+      actor: licensed provider
+      summary: Implement a mechanism enabling users to report harmful content.
+      trigger: ongoing
+      deadline: null
+      carve_out: null
+      key_terms: [mechanism, report]
+    - id: o2
+      actor: licensed provider
+      summary: Acknowledge each user report of harmful content within 24 hours of receipt.
+      trigger: receipt of a user report
+      deadline: 24 hours from receipt
+      carve_out: null
+      key_terms: [acknowledge, twenty-four hours]
+  distractors: []
+
+- id: gold-008
+  modelled_on: vn-decree-147-2024
+  difficulty: medium
+  probe: A threshold condition that determines whether the duty applies at all.
+  text: |
+    (10) An organisation providing cross-border social network services with more than
+    100,000 regular monthly users from Vietnam shall store service user data within the
+    territory of Vietnam.
+  obligations:
+    - id: o1
+      actor: cross-border social network service provider exceeding the user threshold
+      summary: Store service user data within Vietnam.
+      trigger: exceeding 100,000 regular monthly users from Vietnam
+      deadline: null
+      carve_out: Does not apply below the 100,000 regular monthly user threshold.
+      key_terms: [store, Vietnam, 100,000]
+  distractors:
+    - The threshold is a condition on applicability. Extractions omitting it overstate scope.
+
+- id: gold-009
+  modelled_on: th-etda-advertiser-kyc-2026
+  difficulty: easy
+  probe: A pre-condition duty — the obligation is to act *before* another act.
+  text: |
+    (11) A platform operator shall verify the identity of an advertiser before publishing
+    any advertisement submitted by that advertiser.
+  obligations:
+    - id: o1
+      actor: platform operator
+      summary: Verify advertiser identity before publishing any advertisement from that advertiser.
+      trigger: submission of an advertisement for publication
+      deadline: before publication
+      carve_out: null
+      key_terms: [verify, identity, before publishing]
+  distractors: []
+
+- id: gold-010
+  modelled_on: au-bose
+  difficulty: hard
+  probe: >-
+    A transitional provision that defers commencement. A model that reports the duty
+    without the deferral reports a deadline that has not yet started running.
+  text: |
+    (12) A service provider shall report to the Commissioner the number of complaints
+    received in each reporting period.
+    (13) Sub-regulation (12) applies in respect of reporting periods commencing on or after
+    1 July 2027.
+  obligations:
+    - id: o1
+      actor: service provider
+      summary: Report to the Commissioner the number of complaints received in each reporting period.
+      trigger: end of each reporting period
+      deadline: per reporting period
+      carve_out: Applies only to reporting periods commencing on or after 1 July 2027.
+      key_terms: [report, complaints, reporting period]
+  distractors:
+    - The deferral in (13) is not a separate obligation; it limits when o1 bites.
+
+- id: gold-011
+  modelled_on: sg-osraa-2025
+  difficulty: medium
+  probe: A negative obligation — a prohibition rather than a positive duty.
+  text: |
+    (14) A platform shall not reinstate content that has been removed pursuant to a
+    direction unless the direction has been varied or revoked by the Commission.
+  obligations:
+    - id: o1
+      actor: platform
+      summary: Do not reinstate content removed pursuant to a direction.
+      trigger: prior removal pursuant to a direction
+      deadline: null
+      carve_out: Permitted where the direction has been varied or revoked by the Commission.
+      key_terms: [reinstate, direction]
+  distractors:
+    - The "unless" clause is a carve-out, not a second obligation.
+
+- id: gold-012
+  modelled_on: in-it-amendment-rules-2026
+  difficulty: hard
+  probe: >-
+    A cross-reference to a definition not present in the excerpt. The correct behaviour is
+    to extract the duty and flag the unresolved reference, not to guess the definition.
+  text: |
+    (15) A significant social media intermediary shall ensure that any synthetically
+    generated information, as defined in rule 2(1)(w), displays a prominent label and
+    carries provenance metadata that persists through subsequent processing.
+  obligations:
+    - id: o1
+      actor: significant social media intermediary
+      summary: >-
+        Ensure synthetically generated information displays a prominent label and carries
+        persistent provenance metadata.
+      trigger: publication of synthetically generated information
+      deadline: null
+      carve_out: null
+      key_terms: [label, provenance, metadata]
+  distractors:
+    - rule 2(1)(w) is not in the excerpt. A model that invents its content is fabricating scope.

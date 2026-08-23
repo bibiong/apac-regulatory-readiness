@@ -1,0 +1,115 @@
+# India — platform-relevant regulatory instruments
+# Maintainer note: fastest statutory clocks in the region. Verify fortnightly.
+- id: in-it-amendment-rules-2026
+  jurisdiction: India
+  jurisdiction_code: IN
+  instrument: Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Amendment Rules, 2026
+  regulator: MeitY
+  regulator_full: Ministry of Electronics and Information Technology
+  status: in_force
+  passed: 2026-02-10
+  commenced: 2026-02-20
+  themes: [content_takedown, ai_synthetic_media]
+  obligations:
+    - ref: general
+      summary: >-
+        Remove or disable access to court-flagged deepfake content within 3 hours of
+        notification.
+      owner_function: [ops, legal, engineering]
+      clock: 3 hours
+      evidence_required: Receipt timestamp, action timestamp, and the decision basis
+    - ref: general
+      summary: >-
+        Remove non-consensual sexual imagery within a 2-hour window.
+      owner_function: [ops, legal]
+      clock: 2 hours
+      evidence_required: Receipt-to-action timestamps; escalation path taken
+    - ref: general
+      summary: >-
+        Synthetically generated information must carry a prominent label and permanent
+        provenance metadata that cannot be stripped.
+      owner_function: [product, engineering, policy]
+      clock: null
+      evidence_required: Labelling implementation spec; metadata persistence testing
+    - ref: general
+      summary: >-
+        Significant Social Media Intermediaries must require users to declare whether content
+        is synthetically generated before publishing, and verify that declaration through an
+        automated process rather than accepting it at face value.
+      owner_function: [product, engineering, policy]
+      clock: null
+      evidence_required: Declaration flow design; automated verification accuracy metrics
+  deadlines:
+    - date: 2026-02-20
+      event: Amendment Rules take effect
+      certainty: fixed
+  penalty:
+    max_financial: null
+    basis: null
+    personal_liability: false
+    non_financial: >-
+      Missing a statutory removal window is treated as a due-diligence failure capable of
+      stripping safe harbour under s.79 of the IT Act 2000.
+  enforcement_signals: []
+  meta_exposure: >-
+    Applies to significant social media intermediaries, a threshold Meta's services exceed.
+  sources:
+    - title: Ministry of Electronics and Information Technology (MeitY)
+      url: https://www.meity.gov.in/
+      kind: primary
+      accessed: 2026-08-23
+    - title: "Chambers and Partners: Government Notifies Information Technology Amendment Rules 2026"
+      url: https://chambers.com/articles/government-notifies-information-technology-amendment-rules-2026
+      kind: secondary
+      accessed: 2026-08-23
+  confidence: medium
+  notes: >-
+    The compounding case matters: a synthetic asset built from a real person's likeness
+    triggers content-labelling duties and data-protection consent duties at once — one
+    artefact, two regimes, two clocks. A 3-hour clock cannot accommodate a cross-functional
+    review, so the decision must be pre-made: named on-call SME per surface and a
+    pre-approved decision tree.
+  last_verified: 2026-08-23
+  verified_by: B. Ong
+
+- id: in-dpdp-2023
+  jurisdiction: India
+  jurisdiction_code: IN
+  instrument: Digital Personal Data Protection Act 2023 and DPDP Rules 2025
+  regulator: DPB
+  regulator_full: Data Protection Board of India
+  status: partially_in_force
+  passed: 2023-08-11
+  themes: [data_protection, age_assurance]
+  obligations:
+    - ref: s.9
+      summary: >-
+        Verifiable parental consent required before processing the personal data of a child
+        under 18; targeted advertising to children restricted.
+      owner_function: [legal, product, policy]
+      clock: null
+      evidence_required: Consent artefacts and verification method documentation
+    - ref: s.8(6)
+      summary: Notify the Board and each affected Data Principal of a personal data breach.
+      owner_function: [legal, security, comms]
+      clock: Prescribed by rules
+      evidence_required: Breach register and notification records
+  deadlines: []
+  penalty:
+    max_financial: Up to INR 250 crore per instance
+    basis: Fixed sum per contravention category
+    personal_liability: false
+    non_financial: null
+  enforcement_signals: []
+  meta_exposure: Applies to significant data fiduciaries operating in India.
+  sources:
+    - title: Ministry of Electronics and Information Technology (MeitY)
+      url: https://www.meity.gov.in/
+      kind: primary
+      accessed: 2026-08-23
+  confidence: low
+  notes: >-
+    Phased implementation. Under-18 consent threshold is materially stricter than the
+    under-16 line used in AU and ID — a design constraint that does not generalise.
+  last_verified: 2026-08-23
+  verified_by: B. Ong

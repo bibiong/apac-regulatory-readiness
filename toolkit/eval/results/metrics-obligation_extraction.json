@@ -1,0 +1,1425 @@
+{
+  "run_at": "2026-08-23T12:30:24+00:00",
+  "gold_items": 12,
+  "gold_obligations": 12,
+  "match_threshold": 0.67,
+  "prompt": "obligation_extraction.md",
+  "results": [
+    {
+      "model": "llama3.2:3b",
+      "precision": 0.688,
+      "recall": 0.917,
+      "f1": 0.786,
+      "tp": 11,
+      "fp": 5,
+      "fn": 1,
+      "parse_errors": 0,
+      "carve_out_recall": 0.333,
+      "carve_out_n": 3,
+      "trigger_fidelity": 0.778,
+      "trigger_n": 9,
+      "empty_items": 1,
+      "empty_items_hallucinated": 1,
+      "per_item": [
+        {
+          "id": "gold-001",
+          "difficulty": "easy",
+          "probe": "Baseline \u2014 a single unambiguous duty with a named actor.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "the platform",
+              "summary": "must take reasonable steps",
+              "trigger": "having an account with the platform",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-002",
+          "difficulty": "easy",
+          "probe": "A hard numeric clock attached to a triggering event.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "the intermediary",
+              "summary": "must remove or disable access to synthetically generated information",
+              "trigger": "receipt of a notification from a court of competent jurisdiction",
+              "deadline": "three hours",
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-003",
+          "difficulty": "hard",
+          "probe": "A carve-out that reverses the duty for a defined subset. Missing the carve-out produces over-compliance and a wrong scoping decision, which is why carve-outs are scored separately.",
+          "gold_count": 1,
+          "pred_count": 2,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 1,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "an electronic system operator classified as high-risk",
+              "summary": "shall obtain verifiable parental consent before permitting a user aged 16 or 17 to create an account",
+              "trigger": "the creation of an account by a user aged 16 or 17",
+              "deadline": null,
+              "carve_out": "an electronic system operator whose service is provided exclusively for educational purposes under a written agreement with an accredited institution",
+              "unresolved_references": []
+            },
+            {
+              "actor": "an electronic system operator classified as high-risk",
+              "summary": "",
+              "trigger": "the provision of service exclusively for educational purposes under a written agreement with an accredited institution",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": [
+                "provisions referred to but not present in the excerpt"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gold-004",
+          "difficulty": "medium",
+          "probe": "A duty resting on the regulator, not the platform. A model that extracts every modal verb as a platform duty will wrongly claim this one.",
+          "gold_count": 1,
+          "pred_count": 2,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 1,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "The Minister",
+              "summary": "publish a list of designated large-scale platform operators by 31 March each year",
+              "trigger": "by 31 March each year",
+              "deadline": "31 March each year",
+              "carve_out": null,
+              "unresolved_references": []
+            },
+            {
+              "actor": "A designated large-scale platform operator",
+              "summary": "publish an annual report describing the measures it has taken in response to rights-infringement notifications",
+              "trigger": "rights-infringement notifications",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-005",
+          "difficulty": "hard",
+          "probe": "Trigger is suspicion, not confirmation. A model that normalises this to the familiar \"upon becoming aware of a breach\" loses the distinction that determines the clock.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "personal information controller",
+              "summary": "notify the Commission without delay if a personal information breach is suspected",
+              "trigger": "circumstances indicating the possibility of a personal information breach",
+              "deadline": "without delay, and in any event before completing its own verification",
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-006",
+          "difficulty": "hard",
+          "probe": "A recital or purpose clause containing no operative duty. The correct answer is an empty list. Tests whether a model will invent an obligation to fill the output schema.",
+          "gold_count": 0,
+          "pred_count": 1,
+          "matched": 0,
+          "missed": 0,
+          "spurious": 1,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "users in Singapore",
+              "summary": "to promote a safer online environment",
+              "trigger": "having regard to the diversity of services to which this Part applies",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-007",
+          "difficulty": "medium",
+          "probe": "Two distinct duties in one sub-regulation, joined by \"and\". Tests decomposition.",
+          "gold_count": 2,
+          "pred_count": 2,
+          "matched": 2,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "licensed provider",
+              "summary": "implement a mechanism for reporting harmful content",
+              "trigger": "receipt of a report",
+              "deadline": "twenty-four hours",
+              "carve_out": null,
+              "unresolved_references": []
+            },
+            {
+              "actor": "licensed provider",
+              "summary": "acknowledge each report within twenty-four hours",
+              "trigger": "receipt of a report",
+              "deadline": "twenty-four hours",
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-008",
+          "difficulty": "medium",
+          "probe": "A threshold condition that determines whether the duty applies at all.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "an organisation",
+              "summary": "store service user data within the territory of Vietnam",
+              "trigger": "providing cross-border social network services with more than 100,000 regular monthly users from Vietnam",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-009",
+          "difficulty": "easy",
+          "probe": "A pre-condition duty \u2014 the obligation is to act *before* another act.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "platform operator",
+              "summary": "verify the identity of an advertiser",
+              "trigger": "before publishing any advertisement submitted by that advertiser",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-010",
+          "difficulty": "hard",
+          "probe": "A transitional provision that defers commencement. A model that reports the duty without the deferral reports a deadline that has not yet started running.",
+          "gold_count": 1,
+          "pred_count": 2,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 1,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "service provider",
+              "summary": "report complaints received",
+              "trigger": "each reporting period",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            },
+            {
+              "actor": "service provider",
+              "summary": "comply with sub-regulation (12)",
+              "trigger": "reporting periods commencing on or after 1 July 2027",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-011",
+          "difficulty": "medium",
+          "probe": "A negative obligation \u2014 a prohibition rather than a positive duty.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 0,
+          "missed": 1,
+          "spurious": 1,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "the platform",
+              "summary": "not reinstating removed content",
+              "trigger": "a direction from the Commission",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-012",
+          "difficulty": "hard",
+          "probe": "A cross-reference to a definition not present in the excerpt. The correct behaviour is to extract the duty and flag the unresolved reference, not to guess the definition.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "a significant social media intermediary",
+              "summary": "ensure synthetically generated information displays a prominent label and carries provenance metadata",
+              "trigger": "any synthetically generated information, as defined in rule 2(1)(w)",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": [
+                "provision or definition not present in the excerpt"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "model": "llama3.1:8b",
+      "precision": 0.917,
+      "recall": 0.917,
+      "f1": 0.917,
+      "tp": 11,
+      "fp": 1,
+      "fn": 1,
+      "parse_errors": 0,
+      "carve_out_recall": 0.5,
+      "carve_out_n": 4,
+      "trigger_fidelity": 0.667,
+      "trigger_n": 9,
+      "empty_items": 1,
+      "empty_items_hallucinated": 0,
+      "per_item": [
+        {
+          "id": "gold-001",
+          "difficulty": "easy",
+          "probe": "Baseline \u2014 a single unambiguous duty with a named actor.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "An age-restricted social media platform",
+              "summary": "take reasonable steps to prevent an age-restricted user from having an account",
+              "trigger": "ongoing",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-002",
+          "difficulty": "easy",
+          "probe": "A hard numeric clock attached to a triggering event.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "intermediary",
+              "summary": "Remove or disable access to synthetically generated information identified by a court",
+              "trigger": "receipt of notification from a court of competent jurisdiction identifying synthetically generated information",
+              "deadline": "three hours",
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-003",
+          "difficulty": "hard",
+          "probe": "A carve-out that reverses the duty for a defined subset. Missing the carve-out produces over-compliance and a wrong scoping decision, which is why carve-outs are scored separately.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "An electronic system operator classified as high-risk",
+              "summary": "Obtain verifiable parental consent before permitting a user aged 16 or 17 to create an account.",
+              "trigger": "being an electronic system operator classified as high-risk and having a user aged 16 or 17 attempt to create an account",
+              "deadline": null,
+              "carve_out": "An electronic system operator whose service is provided exclusively for educational purposes under a written agreement with an accredited institution",
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-004",
+          "difficulty": "medium",
+          "probe": "A duty resting on the regulator, not the platform. A model that extracts every modal verb as a platform duty will wrongly claim this one.",
+          "gold_count": 1,
+          "pred_count": 2,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 1,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "The Minister",
+              "summary": "Publish a list of designated large-scale platform operators by 31 March each year.",
+              "trigger": "by 31 March each year",
+              "deadline": "31 March each year",
+              "carve_out": null,
+              "unresolved_references": []
+            },
+            {
+              "actor": "A designated large-scale platform operator",
+              "summary": "Publish an annual report describing the measures it has taken in response to rights-infringement notifications.",
+              "trigger": "ongoing",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-005",
+          "difficulty": "hard",
+          "probe": "Trigger is suspicion, not confirmation. A model that normalises this to the familiar \"upon becoming aware of a breach\" loses the distinction that determines the clock.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "a personal information controller",
+              "summary": "notify the Commission without delay, and in any event before completing its own verification of whether a breach has occurred",
+              "trigger": "circumstances indicating the possibility of a personal information breach",
+              "deadline": "without delay",
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-006",
+          "difficulty": "hard",
+          "probe": "A recital or purpose clause containing no operative duty. The correct answer is an empty list. Tests whether a model will invent an obligation to fill the output schema.",
+          "gold_count": 0,
+          "pred_count": 0,
+          "matched": 0,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": []
+        },
+        {
+          "id": "gold-007",
+          "difficulty": "medium",
+          "probe": "Two distinct duties in one sub-regulation, joined by \"and\". Tests decomposition.",
+          "gold_count": 2,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 1,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "A licensed provider",
+              "summary": "Implement a mechanism for reporting harmful content and acknowledge reports within 24 hours",
+              "trigger": "ongoing",
+              "deadline": "twenty-four hours of receipt",
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-008",
+          "difficulty": "medium",
+          "probe": "A threshold condition that determines whether the duty applies at all.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "An organisation providing cross-border social network services with more than 100,000 regular monthly users from Vietnam",
+              "summary": "Store service user data within the territory of Vietnam",
+              "trigger": "providing cross-border social network services with more than 100,000 regular monthly users from Vietnam",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-009",
+          "difficulty": "easy",
+          "probe": "A pre-condition duty \u2014 the obligation is to act *before* another act.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "A platform operator",
+              "summary": "Verify the identity of an advertiser before publishing any advertisement",
+              "trigger": "publishing any advertisement submitted by that advertiser",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-010",
+          "difficulty": "hard",
+          "probe": "A transitional provision that defers commencement. A model that reports the duty without the deferral reports a deadline that has not yet started running.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "A service provider",
+              "summary": "report to the Commissioner the number of complaints received in each reporting period",
+              "trigger": "each reporting period",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-011",
+          "difficulty": "medium",
+          "probe": "A negative obligation \u2014 a prohibition rather than a positive duty.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "A platform",
+              "summary": "Not reinstate content removed under a direction, unless the direction is varied or revoked",
+              "trigger": "content that has been removed pursuant to a direction",
+              "deadline": null,
+              "carve_out": "unless the direction has been varied or revoked by the Commission",
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-012",
+          "difficulty": "hard",
+          "probe": "A cross-reference to a definition not present in the excerpt. The correct behaviour is to extract the duty and flag the unresolved reference, not to guess the definition.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "A significant social media intermediary",
+              "summary": "Ensure synthetically generated information displays a prominent label and carries provenance metadata",
+              "trigger": "ongoing",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": [
+                "rule 2(1)(w)"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "model": "gemma2:9b",
+      "precision": 0.923,
+      "recall": 1.0,
+      "f1": 0.96,
+      "tp": 12,
+      "fp": 1,
+      "fn": 0,
+      "parse_errors": 0,
+      "carve_out_recall": 0.5,
+      "carve_out_n": 4,
+      "trigger_fidelity": 0.8,
+      "trigger_n": 10,
+      "empty_items": 1,
+      "empty_items_hallucinated": 0,
+      "per_item": [
+        {
+          "id": "gold-001",
+          "difficulty": "easy",
+          "probe": "Baseline \u2014 a single unambiguous duty with a named actor.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "An age-restricted social media platform",
+              "summary": "must take reasonable steps to prevent an age-restricted user from having an account with the platform.",
+              "trigger": "ongoing",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-002",
+          "difficulty": "easy",
+          "probe": "A hard numeric clock attached to a triggering event.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "intermediary",
+              "summary": "shall remove or disable access to synthetically generated information",
+              "trigger": "receives a notification from a court of competent jurisdiction identifying synthetically generated information",
+              "deadline": "within three hours of receipt of the notification",
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-003",
+          "difficulty": "hard",
+          "probe": "A carve-out that reverses the duty for a defined subset. Missing the carve-out produces over-compliance and a wrong scoping decision, which is why carve-outs are scored separately.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "An electronic system operator classified as high-risk",
+              "summary": "shall obtain verifiable parental consent before permitting a user aged 16 or 17 to create an account.",
+              "trigger": "permitting a user aged 16 or 17 to create an account",
+              "deadline": null,
+              "carve_out": "an electronic system operator whose service is provided exclusively for educational purposes under a written agreement with an accredited institution",
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-004",
+          "difficulty": "medium",
+          "probe": "A duty resting on the regulator, not the platform. A model that extracts every modal verb as a platform duty will wrongly claim this one.",
+          "gold_count": 1,
+          "pred_count": 2,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 1,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "The Minister",
+              "summary": "shall publish a list of designated large-scale platform operators by 31 March each year.",
+              "trigger": "each year",
+              "deadline": "by 31 March each year",
+              "carve_out": null,
+              "unresolved_references": []
+            },
+            {
+              "actor": "A designated large-scale platform operator",
+              "summary": "shall publish an annual report describing the measures it has taken in response to rights-infringement notifications.",
+              "trigger": "annually",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-005",
+          "difficulty": "hard",
+          "probe": "Trigger is suspicion, not confirmation. A model that normalises this to the familiar \"upon becoming aware of a breach\" loses the distinction that determines the clock.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "personal information controller",
+              "summary": "shall notify the Commission without delay if aware of circumstances indicating the possibility of a personal information breach.",
+              "trigger": "becomes aware of circumstances indicating the possibility of a personal information breach",
+              "deadline": "without delay, and in any event before completing its own verification of whether a breach has occurred",
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-006",
+          "difficulty": "hard",
+          "probe": "A recital or purpose clause containing no operative duty. The correct answer is an empty list. Tests whether a model will invent an obligation to fill the output schema.",
+          "gold_count": 0,
+          "pred_count": 0,
+          "matched": 0,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": []
+        },
+        {
+          "id": "gold-007",
+          "difficulty": "medium",
+          "probe": "Two distinct duties in one sub-regulation, joined by \"and\". Tests decomposition.",
+          "gold_count": 2,
+          "pred_count": 2,
+          "matched": 2,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "A licensed provider",
+              "summary": "shall implement a mechanism enabling users to report harmful content",
+              "trigger": "ongoing",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            },
+            {
+              "actor": "A licensed provider",
+              "summary": "shall acknowledge each report within twenty-four hours of receipt",
+              "trigger": "receipt of a report",
+              "deadline": "twenty-four hours",
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-008",
+          "difficulty": "medium",
+          "probe": "A threshold condition that determines whether the duty applies at all.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "An organisation providing cross-border social network services",
+              "summary": "shall store service user data within the territory of Vietnam",
+              "trigger": "with more than 100,000 regular monthly users from Vietnam",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-009",
+          "difficulty": "easy",
+          "probe": "A pre-condition duty \u2014 the obligation is to act *before* another act.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "A platform operator",
+              "summary": "shall verify the identity of an advertiser before publishing any advertisement submitted by that advertiser.",
+              "trigger": "before publishing any advertisement submitted by that advertiser",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-010",
+          "difficulty": "hard",
+          "probe": "A transitional provision that defers commencement. A model that reports the duty without the deferral reports a deadline that has not yet started running.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "A service provider",
+              "summary": "shall report to the Commissioner the number of complaints received in each reporting period.",
+              "trigger": "each reporting period",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-011",
+          "difficulty": "medium",
+          "probe": "A negative obligation \u2014 a prohibition rather than a positive duty.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "A platform",
+              "summary": "shall not reinstate content that has been removed pursuant to a direction unless the direction has been varied or revoked by the Commission.",
+              "trigger": "pursuant to a direction",
+              "deadline": null,
+              "carve_out": "the direction has been varied or revoked by the Commission",
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-012",
+          "difficulty": "hard",
+          "probe": "A cross-reference to a definition not present in the excerpt. The correct behaviour is to extract the duty and flag the unresolved reference, not to guess the definition.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "A significant social media intermediary",
+              "summary": "shall ensure that any synthetically generated information displays a prominent label and carries provenance metadata that persists through subsequent processing.",
+              "trigger": "ongoing",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": [
+                "rule 2(1)(w)"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "model": "mistral-nemo:12b",
+      "precision": 0.846,
+      "recall": 0.917,
+      "f1": 0.88,
+      "tp": 11,
+      "fp": 2,
+      "fn": 1,
+      "parse_errors": 0,
+      "carve_out_recall": 0.0,
+      "carve_out_n": 3,
+      "trigger_fidelity": 0.667,
+      "trigger_n": 9,
+      "empty_items": 1,
+      "empty_items_hallucinated": 0,
+      "per_item": [
+        {
+          "id": "gold-001",
+          "difficulty": "easy",
+          "probe": "Baseline \u2014 a single unambiguous duty with a named actor.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "An age-restricted social media platform",
+              "summary": "must take reasonable steps to prevent an age-restricted user from having an account with the platform",
+              "trigger": "ongoing",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-002",
+          "difficulty": "easy",
+          "probe": "A hard numeric clock attached to a triggering event.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "an intermediary",
+              "summary": "remove or disable access to synthetically generated information identified by a court notification",
+              "trigger": "receipt of a notification from a court of competent jurisdiction identifying synthetically generated information",
+              "deadline": "three hours"
+            }
+          ]
+        },
+        {
+          "id": "gold-003",
+          "difficulty": "hard",
+          "probe": "A carve-out that reverses the duty for a defined subset. Missing the carve-out produces over-compliance and a wrong scoping decision, which is why carve-outs are scored separately.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "An electronic system operator classified as high-risk",
+              "summary": "shall obtain verifiable parental consent before permitting a user aged 16 or 17 to create an account",
+              "trigger": "before permitting a user aged 16 or 17 to create an account",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-004",
+          "difficulty": "medium",
+          "probe": "A duty resting on the regulator, not the platform. A model that extracts every modal verb as a platform duty will wrongly claim this one.",
+          "gold_count": 1,
+          "pred_count": 2,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 1,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "The Minister",
+              "summary": "Publish a list of designated large-scale platform operators by 31 March each year.",
+              "trigger": "Annually",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            },
+            {
+              "actor": "A designated large-scale platform operator",
+              "summary": "Publish an annual report describing measures taken in response to rights-infringement notifications.",
+              "trigger": "Annually",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-005",
+          "difficulty": "hard",
+          "probe": "Trigger is suspicion, not confirmation. A model that normalises this to the familiar \"upon becoming aware of a breach\" loses the distinction that determines the clock.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "a personal information controller",
+              "summary": "notify the Commission without delay when aware of circumstances indicating the possibility of a personal information breach",
+              "trigger": "becoming aware of circumstances indicating the possibility of a personal information breach",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-006",
+          "difficulty": "hard",
+          "probe": "A recital or purpose clause containing no operative duty. The correct answer is an empty list. Tests whether a model will invent an obligation to fill the output schema.",
+          "gold_count": 0,
+          "pred_count": 0,
+          "matched": 0,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": []
+        },
+        {
+          "id": "gold-007",
+          "difficulty": "medium",
+          "probe": "Two distinct duties in one sub-regulation, joined by \"and\". Tests decomposition.",
+          "gold_count": 2,
+          "pred_count": 2,
+          "matched": 2,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "A licensed provider",
+              "summary": "Shall implement a mechanism enabling users to report harmful content",
+              "trigger": "Ongoing",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            },
+            {
+              "actor": "A licensed provider",
+              "summary": "Shall acknowledge each report of harmful content within twenty-four hours of receipt",
+              "trigger": "Receipt of a report",
+              "deadline": "24 hours",
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-008",
+          "difficulty": "medium",
+          "probe": "A threshold condition that determines whether the duty applies at all.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 0,
+          "missed": 1,
+          "spurious": 1,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "An organisation providing cross-border social network services",
+              "summary": "shall store service user data within the territory of Vietnam",
+              "trigger": "ongoing",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-009",
+          "difficulty": "easy",
+          "probe": "A pre-condition duty \u2014 the obligation is to act *before* another act.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "A platform operator",
+              "summary": "shall verify the identity of an advertiser before publishing any advertisement submitted by that advertiser.",
+              "trigger": "before publishing any advertisement submitted by that advertiser",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-010",
+          "difficulty": "hard",
+          "probe": "A transitional provision that defers commencement. A model that reports the duty without the deferral reports a deadline that has not yet started running.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "A service provider",
+              "summary": "shall report to the Commissioner the number of complaints received in each reporting period.",
+              "trigger": "each reporting period",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-011",
+          "difficulty": "medium",
+          "probe": "A negative obligation \u2014 a prohibition rather than a positive duty.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "A platform",
+              "summary": "shall not reinstate content that has been removed pursuant to a direction",
+              "trigger": "unless the direction has been varied or revoked by the Commission",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-012",
+          "difficulty": "hard",
+          "probe": "A cross-reference to a definition not present in the excerpt. The correct behaviour is to extract the duty and flag the unresolved reference, not to guess the definition.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "A significant social media intermediary",
+              "summary": "ensure that any synthetically generated information displays a prominent label and carries provenance metadata that persists through subsequent processing",
+              "trigger": "ongoing",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": [
+                "rule 2(1)(w)"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "model": "qwen2.5:14b",
+      "precision": 0.923,
+      "recall": 1.0,
+      "f1": 0.96,
+      "tp": 12,
+      "fp": 1,
+      "fn": 0,
+      "parse_errors": 0,
+      "carve_out_recall": 0.5,
+      "carve_out_n": 4,
+      "trigger_fidelity": 0.5,
+      "trigger_n": 10,
+      "empty_items": 1,
+      "empty_items_hallucinated": 0,
+      "per_item": [
+        {
+          "id": "gold-001",
+          "difficulty": "easy",
+          "probe": "Baseline \u2014 a single unambiguous duty with a named actor.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "An age-restricted social media platform",
+              "summary": "must take reasonable steps to prevent an age-restricted user from having an account with the platform",
+              "trigger": "ongoing",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-002",
+          "difficulty": "easy",
+          "probe": "A hard numeric clock attached to a triggering event.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "an intermediary",
+              "summary": "shall remove or disable access to synthetically generated information",
+              "trigger": "receives a notification from a court of competent jurisdiction identifying synthetically generated information",
+              "deadline": "within three hours of receipt of the notification",
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-003",
+          "difficulty": "hard",
+          "probe": "A carve-out that reverses the duty for a defined subset. Missing the carve-out produces over-compliance and a wrong scoping decision, which is why carve-outs are scored separately.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "An electronic system operator classified as high-risk",
+              "summary": "shall obtain verifiable parental consent before permitting a user aged 16 or 17 to create an account",
+              "trigger": "permitting a user aged 16 or 17 to create an account",
+              "deadline": null,
+              "carve_out": "an electronic system operator whose service is provided exclusively for educational purposes under a written agreement with an accredited institution",
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-004",
+          "difficulty": "medium",
+          "probe": "A duty resting on the regulator, not the platform. A model that extracts every modal verb as a platform duty will wrongly claim this one.",
+          "gold_count": 1,
+          "pred_count": 2,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 1,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "The Minister",
+              "summary": "publish a list of designated large-scale platform operators by 31 March each year",
+              "trigger": "ongoing",
+              "deadline": "by 31 March each year",
+              "carve_out": null,
+              "unresolved_references": [
+                "designated large-scale platform operator"
+              ]
+            },
+            {
+              "actor": "A designated large-scale platform operator",
+              "summary": "publish an annual report describing the measures it has taken in response to rights-infringement notifications",
+              "trigger": "ongoing",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": [
+                "rights-infringement notifications"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "gold-005",
+          "difficulty": "hard",
+          "probe": "Trigger is suspicion, not confirmation. A model that normalises this to the familiar \"upon becoming aware of a breach\" loses the distinction that determines the clock.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "a personal information controller",
+              "summary": "notify the Commission without delay when aware of circumstances indicating the possibility of a personal information breach, and in any event before completing its own verification of whether a breach has occurred.",
+              "trigger": "becomes aware of circumstances indicating the possibility of a personal information breach",
+              "deadline": "without delay, and in any event before completing its own verification of whether a breach has occurred",
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-006",
+          "difficulty": "hard",
+          "probe": "A recital or purpose clause containing no operative duty. The correct answer is an empty list. Tests whether a model will invent an obligation to fill the output schema.",
+          "gold_count": 0,
+          "pred_count": 0,
+          "matched": 0,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": []
+        },
+        {
+          "id": "gold-007",
+          "difficulty": "medium",
+          "probe": "Two distinct duties in one sub-regulation, joined by \"and\". Tests decomposition.",
+          "gold_count": 2,
+          "pred_count": 2,
+          "matched": 2,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "A licensed provider",
+              "summary": "shall implement a mechanism enabling users to report harmful content",
+              "trigger": "ongoing",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            },
+            {
+              "actor": "A licensed provider",
+              "summary": "shall acknowledge each report within twenty-four hours of receipt",
+              "trigger": "receipt of a report",
+              "deadline": "twenty-four hours",
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-008",
+          "difficulty": "medium",
+          "probe": "A threshold condition that determines whether the duty applies at all.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "An organisation providing cross-border social network services with more than 100,000 regular monthly users from Vietnam",
+              "summary": "shall store service user data within the territory of Vietnam",
+              "trigger": "ongoing",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-009",
+          "difficulty": "easy",
+          "probe": "A pre-condition duty \u2014 the obligation is to act *before* another act.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "A platform operator",
+              "summary": "shall verify the identity of an advertiser",
+              "trigger": "before publishing any advertisement submitted by that advertiser",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-010",
+          "difficulty": "hard",
+          "probe": "A transitional provision that defers commencement. A model that reports the duty without the deferral reports a deadline that has not yet started running.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "A service provider",
+              "summary": "shall report to the Commissioner the number of complaints received in each reporting period",
+              "trigger": "reporting periods commencing on or after 1 July 2027",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-011",
+          "difficulty": "medium",
+          "probe": "A negative obligation \u2014 a prohibition rather than a positive duty.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "A platform",
+              "summary": "shall not reinstate content that has been removed pursuant to a direction",
+              "trigger": "unless the direction has been varied or revoked by the Commission",
+              "deadline": null,
+              "carve_out": "if the direction has been varied or revoked by the Commission",
+              "unresolved_references": []
+            }
+          ]
+        },
+        {
+          "id": "gold-012",
+          "difficulty": "hard",
+          "probe": "A cross-reference to a definition not present in the excerpt. The correct behaviour is to extract the duty and flag the unresolved reference, not to guess the definition.",
+          "gold_count": 1,
+          "pred_count": 1,
+          "matched": 1,
+          "missed": 0,
+          "spurious": 0,
+          "parse_error": null,
+          "predictions": [
+            {
+              "actor": "A significant social media intermediary",
+              "summary": "Ensure any synthetically generated information displays a prominent label and carries provenance metadata that persists through subsequent processing.",
+              "trigger": "ongoing",
+              "deadline": null,
+              "carve_out": null,
+              "unresolved_references": [
+                "rule 2(1)(w)"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

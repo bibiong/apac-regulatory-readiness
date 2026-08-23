@@ -1,0 +1,46 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    # Weekly. The point is not to catch code changes — it is to catch the world
+    # changing underneath the dataset: a source URL that has moved, or an entry
+    # that has drifted past its 45-day freshness window.
+    - cron: "0 1 * * 1"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Validate tracker dataset
+        run: python3 src/validate.py
+      - name: Run tests
+        run: python3 -m pytest tests/ -q
+      - name: Rebuild site and fail if it is out of date with the data
+        run: |
+          python3 src/build_site.py
+          if ! git diff --quiet -- site/; then
+            echo "::error::site/ is stale — run 'make site' and commit the result"
+            git diff --stat -- site/
+            exit 1
+          fi
+
+  links:
+    runs-on: ubuntu-latest
+    # Link rot is a warning, not a build failure: a government site being down for
+    # an afternoon should not turn the repository red.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - run: python3 src/validate.py --links
