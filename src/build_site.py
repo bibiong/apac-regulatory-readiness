@@ -266,7 +266,7 @@ def build():
         code = es[0].get("jurisdiction_code", "")
         p = ['<a class="back" href="../index.html">← All jurisdictions</a>',
              '<header class="top">',
-             f'<div class="eyebrow">{esc(code)}</div>',
+             '<div class="eyebrow">Jurisdiction</div>',
              f'<h1>{flag(code)} {esc(j)}</h1>',
              f'<p class="lede">{len(es)} tracked instrument{"s" if len(es)!=1 else ""}.</p>',
              '</header>']
