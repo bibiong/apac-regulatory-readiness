@@ -31,9 +31,13 @@ a:hover{text-decoration:underline}
   font-weight:600;margin-bottom:.7rem}
 .lede{font-size:1.05rem;margin-top:.9rem}
 .meta{color:var(--ink-3);font-size:.84rem;margin-top:1rem}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1px;
-  background:var(--line);border:1px solid var(--line);margin:2rem 0;border-radius:6px;overflow:hidden}
-.stat{background:var(--card);padding:1rem 1.1rem}
+/* Cell borders rather than a gap-background: with 5 stats in an auto-fit grid the
+   wrapped row leaves an empty cell, and a container-coloured background paints it as
+   a grey block on narrow viewports. Per-cell borders leave the gap invisible. */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  background:var(--card);border:1px solid var(--line);margin:2rem 0;border-radius:6px;overflow:hidden}
+.stat{background:var(--card);padding:1rem 1.1rem;
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
 .stat b{display:block;font-size:1.5rem;letter-spacing:-.02em;color:var(--accent)}
 .stat span{font-size:.76rem;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em}
 table{width:100%;border-collapse:collapse;font-size:.9rem;margin:1rem 0}
