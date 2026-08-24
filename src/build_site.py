@@ -23,8 +23,15 @@ OUT = ROOT / "site"
 
 ACCENT, INK = "#B26136", "#17140F"
 
-FLAGS = {"AU": "🇦🇺", "IN": "🇮🇳", "JP": "🇯🇵", "KR": "🇰🇷", "SG": "🇸🇬",
-         "ID": "🇮🇩", "VN": "🇻🇳", "MY": "🇲🇾", "TH": "🇹🇭", "PH": "🇵🇭"}
+def flag(code: str) -> str:
+    """Country marker as a text badge rather than a flag emoji.
+
+    Regional-indicator flag emoji do not render at all on Windows and render
+    inconsistently elsewhere, which would put an empty box beside every jurisdiction
+    for a meaningful share of readers. A two-letter badge renders identically on
+    every platform and reads as a dataset rather than as decoration.
+    """
+    return f'<span class="cc">{esc(code)}</span>' if code else ""
 
 STATUS_LABEL = {
     "in_force": "In force", "partially_in_force": "Partially in force",
@@ -101,6 +108,12 @@ td.name{color:var(--ink);font-weight:500}
 footer{border-top:1px solid var(--line);margin-top:3.5rem;padding:1.8rem 0 3rem;
   font-size:.82rem;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between}
 .back{font-size:.85rem;display:inline-block;margin-bottom:1.2rem}
+.cc{display:inline-block;font:600 .68rem/1.35 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  letter-spacing:.08em;padding:.12rem .36rem;border:1px solid var(--line);border-radius:4px;
+  color:var(--ink-3);vertical-align:.06em}
+.jcard .n .cc{font-size:.95rem;padding:.2rem .5rem;color:var(--accent-deep);
+  border-color:var(--accent);letter-spacing:.1em}
+
 """
 
 
@@ -194,7 +207,7 @@ def build():
             b.append(
                 f'<tr><td class="name">{dt.strftime("%d %b %Y")}</td>'
                 f'<td>{days}d</td><td>{esc(d["event"])}</td>'
-                f'<td>{FLAGS.get(e.get("jurisdiction_code",""),"")} '
+                f'<td>{flag(e.get("jurisdiction_code",""))} '
                 f'<a href="jurisdictions/{esc(e["jurisdiction"].lower().replace(" ","-"))}.html">'
                 f'{esc(e["instrument"])}</a></td>'
                 f'<td><span class="pill {pill}">{esc(cert)}</span></td></tr>')
@@ -210,7 +223,7 @@ def build():
         live = sum(1 for e in es if e["status"] in ("in_force", "partially_in_force"))
         slug = j.lower().replace(" ", "-")
         b.append(f'<a class="jcard" href="jurisdictions/{slug}.html">'
-                 f'<div class="n">{FLAGS.get(code,"")}</div>'
+                 f'<div class="n">{flag(code)}</div>'
                  f'<div class="c">{esc(j)}</div>'
                  f'<div class="s">{len(es)} instrument{"s" if len(es)!=1 else ""} · {live} in force</div></a>')
     b.append("</div>")
@@ -225,7 +238,7 @@ def build():
         conf = e.get("confidence", "medium")
         lv = as_date(e["last_verified"])
         b.append(
-            f'<tr><td>{FLAGS.get(e.get("jurisdiction_code",""),"")} {esc(e["jurisdiction"])}</td>'
+            f'<tr><td>{flag(e.get("jurisdiction_code",""))} {esc(e["jurisdiction"])}</td>'
             f'<td class="name"><a href="jurisdictions/{slug}.html#{esc(e["id"])}">{esc(e["instrument"])}</a></td>'
             f'<td>{esc(e["regulator"])}</td>'
             f'<td><span class="pill">{esc(STATUS_LABEL.get(e["status"], e["status"]))}</span></td>'
@@ -250,7 +263,7 @@ def build():
         p = ['<a class="back" href="../index.html">← All jurisdictions</a>',
              '<header class="top">',
              f'<div class="eyebrow">{esc(code)}</div>',
-             f'<h1>{FLAGS.get(code,"")} {esc(j)}</h1>',
+             f'<h1>{flag(code)} {esc(j)}</h1>',
              f'<p class="lede">{len(es)} tracked instrument{"s" if len(es)!=1 else ""}.</p>',
              '</header>']
         for e in sorted(es, key=lambda x: x["instrument"]):
