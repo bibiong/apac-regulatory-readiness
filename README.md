@@ -157,7 +157,7 @@ remediation roadmap fails, and they fail silently because every individual row l
 ## Running it
 
 ```bash
-pip install -r requirements.txt
+pip install -r requirements-dev.txt   # or requirements.txt for runtime only
 make validate && make test && make site
 ```
 
