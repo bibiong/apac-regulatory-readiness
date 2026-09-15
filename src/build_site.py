@@ -161,19 +161,26 @@ def page(title: str, body: str, depth: int = 0) -> str:
 
 def build():
     entries = load()
-    today = date.today()
+    # The build must be a pure function of the dataset. An earlier version stamped
+    # the build date and counted days from it, so the weekly CI check ("is site/ stale
+    # relative to the data?") failed on every scheduled run regardless of the data.
+    # The anchor is now the most recent verification date in the dataset; anything
+    # that depends on the reader's current date is computed in the browser.
+    as_of = max(as_date(e["last_verified"]) for e in entries)
     OUT.mkdir(exist_ok=True)
 
     by_j: dict[str, list[dict]] = defaultdict(list)
     for e in entries:
         by_j[e["jurisdiction"]].append(e)
 
-    # ---- deadline board: every dated event still ahead of us
+    # ---- deadline board: every dated event from the last verification onward.
+    # Events that pass between verifications stay on the board and are labelled
+    # "passed" client-side, which is itself a prompt to re-verify.
     upcoming = []
     for e in entries:
         for d in e.get("deadlines") or []:
             dt = as_date(d["date"])
-            if dt and dt >= today:
+            if dt and dt >= as_of:
                 upcoming.append((dt, e, d))
     upcoming.sort(key=lambda x: x[0])
 
@@ -187,15 +194,16 @@ def build():
          'Asia-Pacific jurisdictions — instrument, regulator, status, obligations, clocks, '
          'penalty exposure and primary sources. Every entry carries the date it was last '
          'verified and a confidence rating earned by the strength of its sources.</p>',
-         f'<p class="meta">Generated {today.isoformat()} from '
-         f'<code>tracker/data/</code>. The dataset is the source of truth; this page is a view of it.</p>',
+         f'<p class="meta">Most recent verification {as_of.isoformat()} — each entry shows its own date. '
+         f'Built from <code>tracker/data/</code>; the dataset is the source of truth and this page is a view of it.</p>',
          '</header>']
 
     b.append('<div class="stats">')
     for val, lab in [(len(entries), "Instruments"), (len(by_j), "Jurisdictions"),
                      (in_force, "In force"), (clocks, "Statutory clocks"),
                      (len(upcoming), "Dated events ahead")]:
-        b.append(f'<div class="stat"><b>{val}</b><span>{esc(lab)}</span></div>')
+        attr = ' id="ahead"' if lab == "Dated events ahead" else ""
+        b.append(f'<div class="stat"><b{attr}>{val}</b><span>{esc(lab)}</span></div>')
     b.append('</div>')
 
     b.append("<h2>Deadline board</h2>")
@@ -205,17 +213,28 @@ def build():
         b.append('<div class="tbl"><table><thead><tr><th>Date</th><th>In</th>'
                  '<th>Event</th><th>Instrument</th><th>Certainty</th></tr></thead><tbody>')
         for dt, e, d in upcoming:
-            days = (dt - today).days
             cert = d.get("certainty", "fixed")
             pill = "live" if cert == "fixed" else "soon"
             b.append(
-                f'<tr><td class="name">{dt.strftime("%d %b %Y")}</td>'
-                f'<td>{days}d</td><td>{esc(d["event"])}</td>'
+                f'<tr data-date="{dt.isoformat()}"><td class="name">{dt.strftime("%d %b %Y")}</td>'
+                f'<td class="days">—</td><td>{esc(d["event"])}</td>'
                 f'<td>{flag(e.get("jurisdiction_code",""))} '
                 f'<a href="jurisdictions/{esc(e["jurisdiction"].lower().replace(" ","-"))}.html">'
                 f'{esc(e["instrument"])}</a></td>'
                 f'<td><span class="pill {pill}">{esc(cert)}</span></td></tr>')
         b.append("</tbody></table></div>")
+        b.append("""<script>
+(function(){
+  var t=new Date();t.setHours(0,0,0,0);var ahead=0;
+  document.querySelectorAll('tr[data-date]').forEach(function(r){
+    var p=r.dataset.date.split('-'),d=new Date(+p[0],p[1]-1,+p[2]);
+    var n=Math.round((d-t)/864e5),c=r.querySelector('.days');
+    if(n<0){c.textContent='passed';r.style.opacity='.55';}
+    else{c.textContent=n===0?'today':n+'d';ahead++;}
+  });
+  var a=document.getElementById('ahead');if(a)a.textContent=ahead;
+})();
+</script>""")
     else:
         b.append("<p>No dated events ahead in the current dataset.</p>")
 

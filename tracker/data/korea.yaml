@@ -6,7 +6,7 @@
   instrument_local: 개인정보 보호법
   regulator: PIPC
   regulator_full: Personal Information Protection Commission
-  status: passed
+  status: in_force
   passed: 2026-03-10
   commenced: 2026-09-11
   themes: [data_protection]
@@ -34,7 +34,7 @@
       evidence_required: Transfer impact assessments and routing documentation
   deadlines:
     - date: 2026-09-11
-      event: Amendments take effect
+      event: Amendments take effect (most provisions)
       certainty: fixed
     - date: 2027-07-01
       event: Mandatory ISMS-P certification for major controllers takes effect
@@ -59,10 +59,18 @@
       url: https://www.pipc.go.kr/eng/
       kind: regulator
       accessed: 2026-08-23
+    - title: "Hunton Andrews Kurth: South Korea Amends Privacy Law to Authorize Fines of Up to 10% of Total Revenue"
+      url: https://www.hunton.com/privacy-and-cybersecurity-law-blog/south-korea-amends-privacy-law-to-authorize-fines-of-up-to-10-of-total-revenue
+      kind: secondary
+      accessed: 2026-09-15
   confidence: medium
   notes: >-
-    Highest-priority readiness item in the tracker on time-to-obligation. Turnover-based
+    Status moved from passed to in_force on re-verification 2026-09-15: secondary sources
+    consistently give 11 September 2026 as the commencement date for most provisions and no
+    postponement has been reported. Commencement has not yet been confirmed against a PIPC
+    primary notice, so confidence stays medium.
+    Was the highest-priority readiness item in the tracker on time-to-obligation. Turnover-based
     fines plus personal liability convert a legal risk into a CFO- and CEO-visible risk,
     which changes the internal escalation path, not just the exposure.
-  last_verified: 2026-08-23
+  last_verified: 2026-09-15
   verified_by: B. Ong

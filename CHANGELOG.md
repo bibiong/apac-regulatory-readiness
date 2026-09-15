@@ -57,3 +57,22 @@ was. Format loosely follows Keep a Changelog.
 Re-verification passes are recorded here with the date and what moved. An entry saying
 "checked, nothing changed" is a real entry and belongs in this list — it is evidence of the
 cadence, which is the thing being demonstrated.
+
+### 2026-09-15 — re-verification pass
+
+**Changed**
+- `kr-pipa-2026-amendments`: `passed` → `in_force`. The 11 September 2026 commencement arrived;
+  the validator flagged the entry on its own ("status 'passed' but commencement has arrived").
+  Re-checked against current secondary reporting: no postponement reported. Not yet confirmed
+  against a PIPC primary notice, so confidence stays `medium`. Added Hunton source.
+
+**Fixed**
+- The weekly scheduled CI run had failed on 7 and 14 September. Cause: the site generator stamped
+  the build date and counted days-to-deadline from it, so a scheduled build on any later day
+  differed from the committed site and the staleness check failed regardless of the data. The
+  build is now a pure function of the dataset (anchored on the latest `last_verified` date);
+  day counts are computed in the reader's browser. Regression test added.
+
+**Not changed**
+- All other entries remain at `last_verified: 2026-08-23`, inside the 45-day freshness window
+  until 2026-10-07. A full pass on the remaining 16 entries is due before that date.

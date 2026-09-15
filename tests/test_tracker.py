@@ -84,3 +84,11 @@ def test_validator_rejects_a_confidence_overclaim(tmp_path, monkeypatch):
     kinds = {s["kind"] for s in loaded[0][1]["sources"]}
     best = max(V.RANK[V.CONFIDENCE_FLOOR[k]] for k in kinds)
     assert V.RANK["high"] > best, "the overclaim should be detectable"
+
+
+def test_site_build_does_not_depend_on_the_current_date():
+    """Regression: the builder once read the build date, so the weekly CI staleness check
+    failed on every scheduled run. The site must be a pure function of the dataset."""
+    src = (ROOT / "src" / "build_site.py").read_text()
+    for call in ("date.today(", "datetime.now(", "datetime.today(", "time.time("):
+        assert call not in src, f"build_site.py calls {call}"
