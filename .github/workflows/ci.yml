@@ -5,10 +5,12 @@ on:
     branches: [main]
   pull_request:
   schedule:
-    # Weekly. The point is not to catch code changes — it is to catch the world
-    # changing underneath the dataset: a source URL that has moved, or an entry
-    # that has drifted past its 45-day freshness window.
-    - cron: "0 1 * * 1"
+    # Monthly, 01:00 UTC on the 2nd. The point is not to catch code changes — it is
+    # to catch the world changing underneath the dataset: a source URL that has
+    # moved, or an entry that has drifted past its 45-day freshness window.
+    # The 2nd rather than the 1st avoids the heavy month-boundary queue on shared
+    # runners, and one check a month is a cadence someone will actually read.
+    - cron: "0 1 2 * *"
 
 jobs:
   validate:

@@ -87,7 +87,7 @@ def test_validator_rejects_a_confidence_overclaim(tmp_path, monkeypatch):
 
 
 def test_site_build_does_not_depend_on_the_current_date():
-    """Regression: the builder once read the build date, so the weekly CI staleness check
+    """Regression: the builder once read the build date, so the scheduled CI staleness check
     failed on every scheduled run. The site must be a pure function of the dataset."""
     src = (ROOT / "src" / "build_site.py").read_text()
     for call in ("date.today(", "datetime.now(", "datetime.today(", "time.time("):

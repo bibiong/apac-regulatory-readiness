@@ -162,7 +162,7 @@ def page(title: str, body: str, depth: int = 0) -> str:
 def build():
     entries = load()
     # The build must be a pure function of the dataset. An earlier version stamped
-    # the build date and counted days from it, so the weekly CI check ("is site/ stale
+    # the build date and counted days from it, so the scheduled CI check ("is site/ stale
     # relative to the data?") failed on every scheduled run regardless of the data.
     # The anchor is now the most recent verification date in the dataset; anything
     # that depends on the reader's current date is computed in the browser.
