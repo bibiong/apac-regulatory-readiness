@@ -200,7 +200,7 @@ def main() -> int:
                 except Exception as exc:  # noqa: BLE001 - report, don't crash the run
                     status = type(exc).__name__
                 seen[url] = status
-            if status in {"200", "301", "302", "403"}:
+            if status in {"200", "202", "301", "302", "403"}:
                 # 403 is common for government sites that reject non-browser agents;
                 # it proves the host resolves, which is what we are testing for.
                 continue

@@ -92,3 +92,39 @@ def test_site_build_does_not_depend_on_the_current_date():
     src = (ROOT / "src" / "build_site.py").read_text()
     for call in ("date.today(", "datetime.now(", "datetime.today(", "time.time("):
         assert call not in src, f"build_site.py calls {call}"
+
+
+# ---------------------------------------------------------------- report
+
+
+def test_freshness_window_matches_the_scheduled_cadence():
+    """The window is 30 days because the scheduled check runs monthly. If one moves
+    without the other, a warning stops meaning 'overdue now'."""
+    assert V.FRESHNESS_DAYS == 30
+    wf = (ROOT / ".github" / "workflows" / "monthly-check.yml").read_text()
+    assert 'cron: "0 1 2 * *"' in wf, "scheduled check is no longer monthly on the 2nd"
+
+
+def test_report_separates_due_from_overdue():
+    """A 30-day window checked monthly puts every entry just past the window at every
+    run. Without the split, every report is all-red and gets ignored."""
+    import importlib, sys as _s
+    _s.path.insert(0, str(ROOT / "src"))
+    R = importlib.import_module("report")
+
+    from datetime import date
+    entries, due, overdue, *_ = R.collect(date(2026, 11, 12))   # ~30d after 13 Oct
+    assert overdue == [], "nothing should be overdue only one cycle on"
+    assert due, "the set should come due each cycle"
+
+    entries, due2, overdue2, *_ = R.collect(date(2027, 2, 2))   # several cycles on
+    assert overdue2, "entries that missed cycles must escalate to overdue"
+
+
+def test_report_never_writes_to_the_dataset():
+    """The automation surfaces work; it must not perform it. last_verified means a
+    person read a source."""
+    src = (ROOT / "src" / "report.py").read_text()
+    for forbidden in ("write_text", "last_verified =", "yaml.safe_dump", "yaml.dump"):
+        assert forbidden not in src.replace('Path(args.out).write_text(md)', ''), \
+            f"report.py appears to mutate state: {forbidden}"

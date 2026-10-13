@@ -1,4 +1,4 @@
-.PHONY: validate links triage assess eval eval-compare site test all
+.PHONY: validate links triage assess eval eval-compare site report test all
 
 validate:          ## schema, dates, sourcing discipline, staleness
 	python3 src/validate.py
@@ -23,6 +23,9 @@ eval-compare:      ## re-run the superseded v1 prompt to reproduce the guardrail
 
 site:              ## regenerate the static tracker site into site/
 	python3 src/build_site.py
+
+report:            ## the monthly re-verification work item, printed locally
+	python3 src/report.py --links --case-study
 
 test:              ## run the test suite
 	# PYTEST_DISABLE_PLUGIN_AUTOLOAD guards against unrelated pytest plugins in a

@@ -101,8 +101,21 @@ def check_links(entries):
         pass
     finally:
         sys.argv = argv
-    return [ln[6:].strip() for ln in buf.getvalue().splitlines()
-            if ln.startswith("WARN ") and ("returned" in ln or "blocks automated" in ln)]
+    seen, actionable, known = set(), [], set()
+    for ln in buf.getvalue().splitlines():
+        if not ln.startswith("WARN "):
+            continue
+        w = ln[6:].strip()
+        if w in seen:
+            continue
+        seen.add(w)
+        if "blocks automated checks" in w:
+            # Permanently bot-protected hosts. Listing these every month would train
+            # the reader to skip the section, so they are counted, not enumerated.
+            known.add(w.split("blocks automated")[0].split(":")[-1].strip())
+        elif "returned" in w:
+            actionable.append(w)
+    return actionable, sorted(known)
 
 
 def check_case_study(entries):
@@ -137,7 +150,7 @@ def check_case_study(entries):
 
 
 def render(today, entries, due, overdue, approaching, mismatches, upcoming, just_passed,
-           link_warnings, case_study_issues) -> str:
+           link_warnings, blocked_hosts, case_study_issues) -> str:
     n_instr = len(entries)
     n_jur = len({e["jurisdiction"] for _, e in entries})
     L = []
@@ -208,8 +221,21 @@ def render(today, entries, due, overdue, approaching, mismatches, upcoming, just
     if link_warnings:
         L.append(f"## Source links needing attention ({len(link_warnings)})")
         L.append("")
+        L.append("A cited source stopped resolving. Either the regulator moved the page — "
+                 "which is often itself a signal that something changed — or the link was "
+                 "wrong.")
+        L.append("")
         for w in link_warnings:
             L.append(f"- {w}")
+        L.append("")
+    if blocked_hosts:
+        L.append(f"<details><summary>{len(blocked_hosts)} host(s) block automated link checks "
+                 "— expected, verify by hand occasionally</summary>")
+        L.append("")
+        for h in blocked_hosts:
+            L.append(f"- `{h}`")
+        L.append("")
+        L.append("</details>")
         L.append("")
 
     if case_study_issues:
@@ -247,11 +273,11 @@ def main() -> int:
     today = V.parse_date(args.today) if args.today else date.today()
     entries, due, overdue, approaching, mismatches, upcoming, just_passed = collect(today)
 
-    link_warnings = check_links(entries) if args.links else []
+    link_warnings, blocked_hosts = check_links(entries) if args.links else ([], [])
     case_study_issues = check_case_study(entries) if args.case_study else []
 
     md = render(today, entries, due, overdue, approaching, mismatches, upcoming, just_passed,
-                link_warnings, case_study_issues)
+                link_warnings, blocked_hosts, case_study_issues)
     if args.out:
         Path(args.out).write_text(md)
         print(f"wrote {args.out}")

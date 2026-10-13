@@ -165,6 +165,32 @@ The eval additionally needs [Ollama](https://ollama.com) running locally with th
 models pulled. No API keys, nothing leaves the machine — which also means the numbers above
 are reproducible rather than asserted.
 
+## How it stays current
+
+A scheduled check runs on the **2nd of each month** (`.github/workflows/monthly-check.yml`).
+It validates the dataset, rebuilds and pushes the site if it has drifted from the data,
+checks that every cited source URL still resolves, cross-checks the figures quoted in the
+public case study, and opens a dated issue listing what needs attention: entries past the
+30-day freshness window, instruments whose commencement date has arrived while the status
+still says `passed`, drafts that may have changed direction, and deadlines inside 60 days.
+
+**It never writes `last_verified`.** That field records that a person read a source and
+formed a view. A tracker whose freshness dates advance on a timer looks maintained while
+nobody is reading anything, which is worse than one that admits it is stale. The job gets
+you to the judgement call and stops there.
+
+The freshness window is 30 days, matching the check interval, so a warning means overdue
+*now*. Because that puts the whole set just past the window at each run, the report
+separates **due this cycle** — expected, it is the monthly task — from **overdue**, meaning
+an entry has missed a cycle. An all-red report is one nobody reads.
+
+Staleness on the live site is aged in the reader's browser, so the tracker tells the truth
+about its own freshness between checks rather than only on the day it was built.
+
+```bash
+python3 src/report.py --links --case-study   # the same report, locally
+```
+
 ## What this claims, and what it does not
 
 This repository was created on **2026-08-23**. It does not claim a long history of sustained
