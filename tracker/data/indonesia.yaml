@@ -32,19 +32,41 @@
     basis: null
     personal_liability: false
     non_financial: Administrative sanctions including access restriction under MR5/PP71
-  enforcement_signals: []
+  enforcement_signals:
+    - date: 2026-09-30
+      signal: >-
+        Komdigi pressed Meta to accelerate deactivation of under-16 accounts. Meta reported
+        deactivating 184,000 Indonesian under-13 accounts between March and May 2026; access
+        reported restricted for 28 million child accounts across the eight high-risk platforms
+        since PP Tunas took effect.
+      source: https://www.biometricupdate.com/202609/indonesia-presses-meta-to-accelerate-under-16-account-deactivation
+    - date: 2026-10-09
+      signal: >-
+        Indonesia publicly flagged gaps in Meta's child-safety compliance, singling out Threads
+        for having filed no reports to the ministry more than six months after PP Tunas took
+        effect.
+      source: https://www.thejakartapost.com/indonesia/2026/10/09/indonesia-flags-metas-gaps-in-child-safety-compliance
   meta_exposure: >-
-    Facebook, Instagram and Threads were reported among the eight platforms targeted in
-    phase one implementation.
+    Facebook, Instagram and Threads are among the eight services classified high-risk
+    (with TikTok, YouTube, X, Bigo Live and Roblox). Threads was named in October 2026 for
+    filing no compliance reports.
   sources:
     - title: Kementerian Komunikasi dan Digital (Komdigi)
       url: https://www.komdigi.go.id/
       kind: regulator
       accessed: 2026-08-23
+    - title: "The Jakarta Post: Indonesia flags Meta's gaps in child safety compliance"
+      url: https://www.thejakartapost.com/indonesia/2026/10/09/indonesia-flags-metas-gaps-in-child-safety-compliance
+      kind: secondary
+      accessed: 2026-10-13
   confidence: low
   notes: >-
     Indonesia mandates age inference where other regimes merely permit it — the clearest
     example in the tracker of two jurisdictions converging on a theme while diverging on
-    the acceptable method. Single-source; upgrade confidence on primary text review.
-  last_verified: 2026-08-23
+    the acceptable method. Upgrade confidence on primary text review.
+    Re-verified 2026-10-13: this is now the most actively enforced entry in the tracker
+    against Meta specifically. Periodic reporting to the ministry is evidently an expected
+    obligation — Threads was named for not filing — but the reporting duty is not yet
+    recorded as an obligation here because it has not been traced to a provision.
+  last_verified: 2026-10-13
   verified_by: B. Ong

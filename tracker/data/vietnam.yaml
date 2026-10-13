@@ -34,14 +34,16 @@
       kind: regulator
       accessed: 2026-08-23
   confidence: low
-  notes: Re-verify against the Vietnamese-language decree text before relying on specifics.
-  last_verified: 2026-08-23
+  notes: >-
+    Re-verify against the Vietnamese-language decree text before relying on specifics.
+    Re-verified 2026-10-13: no change found to the decree in force.
+  last_verified: 2026-10-13
   verified_by: B. Ong
 
 - id: vn-draft-decree-minor-posting-2026
   jurisdiction: Vietnam
   jurisdiction_code: VN
-  instrument: Draft decree restricting posting and interaction by users under 16
+  instrument: Draft amendments to Decree 147 on minors' use of internet services
   regulator: MCST
   regulator_full: Ministry of Culture, Sports and Tourism
   status: consultation
@@ -49,9 +51,17 @@
   obligations:
     - ref: general
       summary: >-
-        As drafted, users under 16 could retain accounts but lose the ability to post,
-        comment or react, with technical identification of child users mandated.
+        As revised in September 2026, under-16s are not barred from social media, but a parent
+        or guardian must register and supervise the account; under-13s would be barred from
+        posting, commenting or sharing.
       owner_function: [product, engineering, policy]
+      clock: null
+      evidence_required: null
+    - ref: general
+      summary: >-
+        As drafted, game operators would verify user age, register under-16 accounts through a
+        parent or guardian, and cap under-16 play at 60 minutes per day.
+      owner_function: [product, engineering]
       clock: null
       evidence_required: null
   deadlines: []
@@ -67,10 +77,23 @@
       url: https://bvhttdl.gov.vn/
       kind: regulator
       accessed: 2026-08-23
+    - title: "TNGlobal: Vietnam not to ban under-16s from social media, but parents must register, supervise accounts"
+      url: https://technode.global/2026/09/04/vietnam-not-to-ban-under-16s-from-social-media-but-parents-must-register-supervise-accounts/
+      kind: secondary
+      accessed: 2026-10-13
+    - title: "The Diplomat: Vietnam Planning Social Media Restrictions for Children Under 16"
+      url: https://thediplomat.com/2026/07/vietnam-planning-social-media-restrictions-for-children-under-16/
+      kind: secondary
+      accessed: 2026-10-13
   confidence: low
   notes: >-
-    Consultation stage — a shaping opportunity rather than a compliance obligation.
-    Consultations are named explicitly in the JD and are the workstream most often
-    under-resourced because they carry a soft deadline.
-  last_verified: 2026-08-23
+    Consultation stage — a shaping opportunity rather than a compliance obligation, and the
+    workstream most often under-resourced because it carries a soft deadline.
+    Re-verified 2026-10-13: the draft has materially changed direction since this entry was
+    written. The August version recorded a posting ban for under-16s; September reporting has
+    the ministry stepping back from that to parental registration and supervision, with the
+    posting ban falling to under-13s. Still consultation stage. This is the clearest example
+    in the tracker of why a draft entry needs a short re-verification cycle — the obligation
+    recorded in August would now be wrong in both scope and age threshold.
+  last_verified: 2026-10-13
   verified_by: B. Ong

@@ -39,6 +39,13 @@
       owner_function: [product, engineering, policy]
       clock: null
       evidence_required: Declaration flow design; automated verification accuracy metrics
+    - ref: general
+      summary: >-
+        Issue periodic user advisories setting out the consequences of non-compliance, at
+        least once every three months.
+      owner_function: [policy, comms, product]
+      clock: Every 3 months
+      evidence_required: Advisory text, distribution surface and send dates per quarter
   deadlines:
     - date: 2026-02-20
       event: Amendment Rules take effect
@@ -62,6 +69,10 @@
       url: https://chambers.com/articles/government-notifies-information-technology-amendment-rules-2026
       kind: secondary
       accessed: 2026-08-23
+    - title: "Khaitan & Co: MeitY notifies the IT Amendment Rules 2026"
+      url: https://www.khaitanco.com/thought-leadership/MeitY-notifies-the-IT-Amendment-Rules-2026
+      kind: secondary
+      accessed: 2026-10-13
   confidence: medium
   notes: >-
     The compounding case matters: a synthetic asset built from a real person's likeness
@@ -69,7 +80,10 @@
     artefact, two regimes, two clocks. A 3-hour clock cannot accommodate a cross-functional
     review, so the decision must be pre-made: named on-call SME per surface and a
     pre-approved decision tree.
-  last_verified: 2026-08-23
+    Re-verified 2026-10-13: added the quarterly user-advisory duty, which the initial entry
+    missed. The labelling standard is qualitative (prominent, noticeable, perceivable; audio
+    disclosure prefixed) rather than the proposed 10%-surface-area watermark.
+  last_verified: 2026-10-13
   verified_by: B. Ong
 
 - id: in-dpdp-2023
@@ -111,5 +125,6 @@
   notes: >-
     Phased implementation. Under-18 consent threshold is materially stricter than the
     under-16 line used in AU and ID — a design constraint that does not generalise.
-  last_verified: 2026-08-23
+    Re-verified 2026-10-13: no change found.
+  last_verified: 2026-10-13
   verified_by: B. Ong

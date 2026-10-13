@@ -25,11 +25,13 @@
     personal_liability: false
     non_financial: Corrective recommendations; designation-linked supervision
   enforcement_signals:
-    - date: 2026-07-01
+    - date: 2026-07-24
       signal: >-
-        MIC issued corrective recommendations to several designated operators, finding FY2025
-        enforcement disclosures incomplete against reporting requirements.
-      source: https://www.soumu.go.jp/menu_news/
+        MIC issued corrective recommendations to five designated operators — X Corp., Google,
+        Meta Platforms, Shonan Seibu Home (bakusai.com) and Dwango (Niconico) — finding FY2025
+        enforcement disclosures incomplete against a ministerial ordinance. MIC may issue
+        formal corrective orders if the recommendations are not met without legitimate grounds.
+      source: https://www.anews.com.tr/world/2026/07/24/japan-tells-x-google-to-improve-transparency-on-tackling-harmful-online-content
   meta_exposure: >-
     Meta is among the designated large-scale operators and publishes an annual IDPA
     transparency report covering Facebook, Instagram and Threads.
@@ -42,11 +44,19 @@
       url: https://transparency.meta.com/
       kind: secondary
       accessed: 2026-08-23
+    - title: "Japan tells X, Google to improve transparency on tackling harmful online content"
+      url: https://www.anews.com.tr/world/2026/07/24/japan-tells-x-google-to-improve-transparency-on-tackling-harmful-online-content
+      kind: secondary
+      accessed: 2026-10-13
   confidence: low
   notes: >-
     Reporting-completeness findings are usually a data-lineage problem rather than a
     willingness problem — the report asks a question internal metrics were never shaped to
-    answer. Confidence is low because the July 2026 recommendation is sourced to press
-    reporting; re-verify against the MIC release before citing.
-  last_verified: 2026-08-23
+    answer. Confidence stays low because the July 2026 recommendation is still sourced to
+    press reporting; re-verify against the MIC release before citing.
+    Re-verified 2026-10-13: the recommendation is confirmed and dated 24 July 2026, with the
+    five recipients named, Meta among them. Press reporting also places the Act in force from
+    April 2025; the exact commencement date is not recorded here because it has not been
+    confirmed against a primary source.
+  last_verified: 2026-10-13
   verified_by: B. Ong

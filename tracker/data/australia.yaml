@@ -34,7 +34,9 @@
       event: Obligation commenced
       certainty: fixed
     - date: 2026-06-30
-      event: eSafety aiming to conclude at least some platform investigations and decide on enforcement
+      event: >-
+        eSafety's indicated date to conclude at least some investigations and decide on
+        enforcement. Passed without a published decision as at 2026-10-13.
       certainty: expected
   penalty:
     max_financial: Up to AUD 49.5 million
@@ -51,6 +53,12 @@
       signal: >-
         Five platforms — Facebook, Instagram, Snapchat, TikTok and YouTube — flagged for
         compliance concerns; eSafety states it is moving into an enforcement stance.
+      source: https://www.esafety.gov.au/newsroom/media-releases/five-social-media-platforms-flagged-for-compliance-issues
+    - date: 2026-10-13
+      signal: >-
+        Investigations into the same five platforms remain open and no enforcement decision
+        has been published, past the mid-2026 date eSafety had indicated. 23 compulsory
+        information-gathering notices issued to the ten age-restricted platforms to date.
       source: https://www.esafety.gov.au/newsroom/media-releases/five-social-media-platforms-flagged-for-compliance-issues
   meta_exposure: >-
     Facebook and Instagram are named among the five platforms under investigation for
@@ -73,7 +81,7 @@
     This is the worked example used throughout the readiness framework. A compulsory notice
     under live investigation is the exact artefact the JD calls a "statutory information
     request" — fixed deadline, legally compelled, evidence must be defensible if published.
-  last_verified: 2026-08-23
+  last_verified: 2026-10-13
   verified_by: B. Ong
 
 - id: au-strengthening-enforcement-2026
@@ -93,14 +101,19 @@
       clock: null
       evidence_required: null
   deadlines:
+    - date: 2026-08-25
+      event: Parliamentary inquiry due to report on the Bill
+      certainty: fixed
     - date: 2026-12-31
       event: Passage expected during the 2026 parliamentary sittings
       certainty: speculative
   penalty:
-    max_financial: Doubling of the current AUD 49.5 million maximum, as drafted
-    basis: Civil penalty
+    max_financial: AUD 99 million (60,000 penalty units) for systemic breaches, as drafted
+    basis: >-
+      Civil penalty. Doubles the current maximum of AUD 49.5 million (30,000 penalty units)
+      under the Social Media Minimum Age framework.
     personal_liability: false
-    non_financial: Wider notice powers
+    non_financial: Wider compulsory information-gathering powers
   enforcement_signals: []
   meta_exposure: Would apply to the same age-restricted platform set.
   sources:
@@ -108,11 +121,24 @@
       url: https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation
       kind: primary
       accessed: 2026-08-23
+    - title: "Parliamentary Library Bills Digest — Online Safety Amendment (Strengthening Enforcement for the Social Media Minimum Age) Bill 2026"
+      url: https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/bd/bd2627/27bd012
+      kind: primary
+      accessed: 2026-10-13
+    - title: "Pinsent Masons: Australian government looks to double down on enforcement of social media age restrictions"
+      url: https://www.pinsentmasons.com/out-law/news/australian-government-enforcement-social-media-age-restrictions
+      kind: secondary
+      accessed: 2026-10-13
   confidence: low
   notes: >-
     Tracked because the operational consequence is notice volume, not penalty quantum.
     Wider compulsory powers means more statutory responses competing for the same SMEs.
-  last_verified: 2026-08-23
+    Re-verified 2026-10-13: referred to a parliamentary inquiry that was due to report
+    25 Aug 2026; no passage recorded as at this date, so status stays draft. An earlier
+    press summary gave the penalty as 150,000 units / AUD 54.6m, which conflicts with the
+    30,000 / 60,000 unit figures used here — the unit figures are from the Bills Digest
+    reporting and are preferred. Re-check against the Bill text before quoting a number.
+  last_verified: 2026-10-13
   verified_by: B. Ong
 
 - id: au-bose
@@ -148,5 +174,6 @@
   notes: >-
     Recurring rather than episodic. Cross-notice consistency is a standing risk — an answer
     given in one notice constrains every later one.
-  last_verified: 2026-08-23
+    Re-verified 2026-10-13: no change found.
+  last_verified: 2026-10-13
   verified_by: B. Ong

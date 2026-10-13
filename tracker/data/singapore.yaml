@@ -55,7 +55,8 @@
   notes: >-
     Newest regulator in the region. First operating year means process and escalation
     thresholds are still forming — highest-variance relationship in APAC.
-  last_verified: 2026-08-23
+    Re-verified 2026-10-13: no change found; OSC remains in its first operating year.
+  last_verified: 2026-10-13
   verified_by: B. Ong
 
 - id: sg-code-online-safety-sms
@@ -100,7 +101,9 @@
   notes: >-
     The annual report is the recurring transparency obligation most likely to expose a
     data-lineage gap — the report asks questions internal metrics were not shaped to answer.
-  last_verified: 2026-08-23
+    Re-verified 2026-10-13: no change found. IMDA's designated services list and the annual
+    Online Safety Assessment Report cycle are unchanged.
+  last_verified: 2026-10-13
   verified_by: B. Ong
 
 - id: sg-ocha-2023
@@ -134,8 +137,10 @@
       kind: primary
       accessed: 2026-08-23
   confidence: medium
-  notes: Sits alongside the anti-scam cluster obligations in TH, HK and PH.
-  last_verified: 2026-08-23
+  notes: >-
+    Sits alongside the anti-scam cluster obligations in TH, HK and PH.
+    Re-verified 2026-10-13: no change found.
+  last_verified: 2026-10-13
   verified_by: B. Ong
 
 - id: sg-pdpa
@@ -176,5 +181,6 @@
   notes: >-
     The 3-day clock runs from the assessment decision, not from discovery — which makes the
     assessment timestamp the single most contested fact in any breach filing.
-  last_verified: 2026-08-23
+    Re-verified 2026-10-13: no change found.
+  last_verified: 2026-10-13
   verified_by: B. Ong

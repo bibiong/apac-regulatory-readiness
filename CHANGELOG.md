@@ -76,3 +76,56 @@ cadence, which is the thing being demonstrated.
 **Not changed**
 - All other entries remain at `last_verified: 2026-08-23`, inside the 45-day freshness window
   until 2026-10-07. A full pass on the remaining 16 entries is due before that date.
+
+### 2026-10-13 — full re-verification pass (all 17 entries)
+
+The first complete pass. Every entry re-checked against current sources and re-dated; the
+16 entries still at 2026-08-23 had passed the 45-day freshness window on 2026-10-07 and the
+validator was warning on all of them.
+
+**Substantive changes**
+- `vn-draft-decree-minor-posting-2026`: the draft changed direction. The August entry recorded
+  a posting ban for under-16s; September reporting has the ministry stepping back to parental
+  registration and supervision, with the posting ban falling to under-13s. Added the draft
+  gaming provisions (age verification, guardian registration, 60-minute daily cap). Still
+  consultation stage. The obligation as recorded in August would now be wrong in both scope
+  and age threshold.
+- `my-online-safety-act-2025`: the initial entry missed the two subsidiary codes. The Risk
+  Mitigation Code and Child Protection Code took effect 2026-06-01 and carry the substantive
+  systemic duties. Added, with citation Act 866.
+- `th-etda-advertiser-kyc-2026`: instrument properly identified as the Notification on Measures
+  for Prevention of Technology Crime for Online Social Media, published 2026-05-05, effective
+  180 days later. Two missed details added: verification lapses after one year, making this a
+  recurring cycle rather than a one-off check, and the duty can reach agencies and foreign
+  advertisers, not only the account holder. Nearest live deadline in the tracker.
+- `in-it-amendment-rules-2026`: added the quarterly user-advisory duty, which the initial entry
+  missed. Noted that the labelling standard is qualitative rather than the proposed
+  10%-surface-area watermark.
+- `ph-anti-financial-scamming`: identified as RA 12010 (signed July 2024), operationalised via
+  BSP circulars with a 2026-06-30 institutional deadline. Primary citation added, confidence
+  raised `low` → `medium`. Monitor posture unchanged: the duties sit on financial institutions,
+  not platforms.
+- `au-strengthening-enforcement-2026`: penalty recorded as AUD 99m / 60,000 penalty units as
+  drafted, against the current AUD 49.5m / 30,000 units. Referred to a parliamentary inquiry
+  due to report 2026-08-25; no passage recorded, so status stays `draft`. A press summary
+  giving 150,000 units / AUD 54.6m conflicts with this and was not used — flagged in the entry.
+
+**Enforcement signals added**
+- `id-pp-tunas-2025`: Komdigi pressed Meta on under-16 deactivation (2026-09-30) and publicly
+  flagged gaps in Meta's child-safety compliance, naming Threads for filing no reports
+  (2026-10-09). Now the most actively enforced entry against Meta specifically.
+- `jp-idpa`: the July 2026 corrective recommendation is confirmed, dated 2026-07-24, with all
+  five recipients named — X, Google, Meta, Shonan Seibu Home and Dwango.
+- `au-smma-2024`: investigations into the five platforms remain open with no published
+  enforcement decision, past the mid-2026 date eSafety had indicated.
+
+**Checked, no change found**
+- All four Singapore entries, `in-dpdp-2023`, `au-bose`, `vn-decree-147-2024`. Recorded because
+  the cadence is the thing being evidenced and a quiet entry is a result.
+
+**Note on what this pass cost**
+Six of the seventeen entries changed substantively in seven weeks, and two of those changes
+(Vietnam's reversal, Malaysia's subsidiary codes) would have made the entry actively
+misleading rather than merely stale. That is the argument for the freshness window existing
+at all.
+

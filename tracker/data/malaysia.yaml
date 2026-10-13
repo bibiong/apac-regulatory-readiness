@@ -3,6 +3,7 @@
   jurisdiction: Malaysia
   jurisdiction_code: MY
   instrument: Online Safety Act 2025
+  citation: Act 866
   regulator: MCMC
   regulator_full: Malaysian Communications and Multimedia Commission
   status: in_force
@@ -16,9 +17,26 @@
       owner_function: [ops, legal, policy]
       clock: Short statutory deadlines set by the Act and MCMC directions
       evidence_required: Report-to-action timestamps; appeal outcomes
+    - ref: Risk Mitigation Code
+      summary: >-
+        Comply with the Risk Mitigation Code issued under the Act, covering systemic duties to
+        assess and mitigate harmful-content risk.
+      owner_function: [policy, product, ops]
+      clock: null
+      evidence_required: Risk assessments and mitigation records
+    - ref: Child Protection Code
+      summary: >-
+        Comply with the Child Protection Code issued under the Act, covering minor-specific
+        safeguards.
+      owner_function: [policy, product, engineering]
+      clock: null
+      evidence_required: Child-safety measure documentation
   deadlines:
     - date: 2026-01-01
       event: Act in force; major providers deemed licensed
+      certainty: fixed
+    - date: 2026-06-01
+      event: Risk Mitigation Code and Child Protection Code take effect
       certainty: fixed
   penalty:
     max_financial: Up to RM 500,000
@@ -34,6 +52,14 @@
       url: https://www.mcmc.gov.my/
       kind: regulator
       accessed: 2026-08-23
+    - title: "Mayer Brown: Short Deadlines, Significant Penalties — Malaysia's Online Safety Act in Focus"
+      url: https://www.mayerbrown.com/en/insights/publications/2026/07/short-deadlines-significant-penalties-malaysias-online-safety-act-in-focus
+      kind: secondary
+      accessed: 2026-10-13
+    - title: "Rahmat Lim & Partners: Online Safety Act 2025 and its subsidiary legislation"
+      url: https://www.rahmatlim.com/perspectives/articles/32091/mykh-online-safety-in-malaysia-what-you-should-know-about-the-online-safety-act-2025-and-its-subsidiary-legislation
+      kind: secondary
+      accessed: 2026-10-13
   confidence: low
   notes: >-
     Licensing is the structural point. A licence converts a foreign service into a
@@ -41,5 +67,8 @@
     or withdrawn — moving the relationship from episodic (they write, you answer) to
     continuous (you report, they supervise). Continuous supervision is what makes a
     readiness programme necessary rather than a response queue.
-  last_verified: 2026-08-23
+    Re-verified 2026-10-13: the initial entry missed the two subsidiary codes — the Risk
+    Mitigation Code and the Child Protection Code — which took effect 1 June 2026 and carry
+    the substantive systemic duties. Added. Citation Act 866 added.
+  last_verified: 2026-10-13
   verified_by: B. Ong

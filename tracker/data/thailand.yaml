@@ -2,19 +2,31 @@
 - id: th-etda-advertiser-kyc-2026
   jurisdiction: Thailand
   jurisdiction_code: TH
-  instrument: ETDA notification requiring advertiser identity verification on social platforms
+  instrument: Notification on Measures for Prevention of Technology Crime for Online Social Media
+  citation: Published 5 May 2026; effective 180 days after publication
   regulator: ETDA
-  regulator_full: Electronic Transactions Development Agency
+  regulator_full: Electronic Transactions Development Agency / Electronic Transactions Commission
   status: passed
+  passed: 2026-05-05
   commenced: 2026-11-01
   themes: [scam_fraud]
   obligations:
     - ref: general
       summary: >-
-        Verify advertiser identity before publishing paid content on social media platforms.
+        Verify the identity of every advertiser before publishing an advertisement. Verification
+        remains valid for up to one year from the most recent verification date, so the duty is
+        a recurring re-verification cycle rather than a one-off check.
       owner_function: [product, engineering, ops, legal]
-      clock: Pre-publication
-      evidence_required: Verification records per advertiser; rejection and appeal logs
+      clock: Pre-publication; re-verify at least annually
+      evidence_required: >-
+        Verification records per advertiser with verification dates, rejection and appeal logs
+    - ref: general
+      summary: >-
+        Verification duties can extend to brands, advertising agencies and foreign advertisers
+        depending on who places and pays for the advertisement.
+      owner_function: [legal, policy, ops]
+      clock: null
+      evidence_required: Records identifying the paying party per advertisement
   deadlines:
     - date: 2026-11-01
       event: Advertiser-KYC notification takes effect
@@ -31,10 +43,18 @@
       url: https://www.etda.or.th/en/
       kind: regulator
       accessed: 2026-08-23
+    - title: "Tilleke & Gibbins: Thailand Mandates Advertiser Identity Verification for Social Media Platforms"
+      url: https://www.tilleke.com/insights/thailand-mandates-advertiser-identity-verification-for-social-media-platforms/
+      kind: secondary
+      accessed: 2026-10-13
   confidence: low
   notes: >-
     Part of the regional anti-scam cluster with SG, PH and HK, where controls increasingly
     bind banks, telcos and platforms together through national anti-scam centre structures.
     Ads-integrity engineering is the binding constraint, not policy.
-  last_verified: 2026-08-23
+    Re-verified 2026-10-13: nearest live deadline in the tracker. The instrument has a proper
+    name and publication date, now recorded. Two details the initial entry missed: verification
+    lapses after one year, making this a recurring cycle, and the duty can reach agencies and
+    foreign advertisers, not only the account holder.
+  last_verified: 2026-10-13
   verified_by: B. Ong

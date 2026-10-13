@@ -2,20 +2,35 @@
 - id: ph-anti-financial-scamming
   jurisdiction: Philippines
   jurisdiction_code: PH
-  instrument: Anti-Financial Account Scamming and related online fraud measures
+  instrument: Anti-Financial Account Scamming Act (AFASA)
+  citation: Republic Act No. 12010
   regulator: BSP / DOJ
   regulator_full: Bangko Sentral ng Pilipinas and Department of Justice
   status: in_force
+  passed: 2024-07-20
   themes: [scam_fraud]
   obligations:
     - ref: general
       summary: >-
-        Expanded institutional obligations against money-mule and social-engineering
-        activity, with coordination duties across financial institutions and platforms.
+        Criminalises money-mule activity, social-engineering schemes and economic sabotage,
+        with coordination duties across financial institutions, law enforcement and platforms.
       owner_function: [legal, ops, policy]
       clock: null
       evidence_required: Referral and coordination records
-  deadlines: []
+    - ref: BSP Circular 1213
+      summary: >-
+        BSP-supervised institutions must run real-time automated fraud monitoring, including
+        velocity checks, geolocation and device-change monitoring and blacklist screening, and
+        move away from SMS and email OTPs for high-risk transactions.
+      owner_function: [security, ops]
+      clock: Compliance deadline 30 June 2026
+      evidence_required: >-
+        Not a platform duty. Recorded because it sets the counterparty's control expectations
+        in any joint anti-scam workstream.
+  deadlines:
+    - date: 2026-06-30
+      event: BSP compliance deadline for supervised institutions under the AFASA circulars
+      certainty: fixed
   penalty:
     max_financial: null
     basis: null
@@ -26,14 +41,26 @@
     Platform obligations arise mainly through coordination duties rather than direct
     designation. Monitored rather than actively managed.
   sources:
+    - title: Republic Act No. 12010 — Senate of the Philippines issuances library
+      url: https://issuances-library.senate.gov.ph/legislative-issuance/republic-act-no-12010
+      kind: primary
+      accessed: 2026-10-13
+    - title: BSP — AFASA booklet with implementing rules and regulations
+      url: https://www.bsp.gov.ph/Regulations/Banking%20Laws/AFASA-Booklet-with-IRRs.pdf
+      kind: regulator
+      accessed: 2026-10-13
     - title: Bangko Sentral ng Pilipinas
       url: https://www.bsp.gov.ph/
       kind: regulator
       accessed: 2026-08-23
-  confidence: low
+  confidence: medium
   notes: >-
-    Deliberately the thinnest entry in the tracker. Carried at low confidence and monitor
-    posture rather than written up to a depth the sourcing does not support — see
+    Deliberately the thinnest entry in the tracker, carried at monitor posture — see
     docs/METHODOLOGY.md on why coverage claims are scoped.
-  last_verified: 2026-08-23
+    Re-verified 2026-10-13: the instrument is now properly identified as RA 12010, signed July
+    2024, operationalised through BSP circulars with a 30 June 2026 institutional deadline.
+    Confidence raised to medium on the strength of the primary citation. The substantive
+    duties still sit on financial institutions rather than platforms, so the monitor posture
+    is unchanged — this is a counterparty obligation, not a platform one.
+  last_verified: 2026-10-13
   verified_by: B. Ong
