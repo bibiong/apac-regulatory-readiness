@@ -30,10 +30,11 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "tracker" / "data"
 SCHEMA = ROOT / "tracker" / "schema" / "instrument.schema.json"
 
-# An entry not looked at within this window is presumed stale. Chosen because the
-# fastest-moving jurisdictions in this set (AU, IN) have produced material changes
-# on roughly a monthly cadence.
-FRESHNESS_DAYS = 45
+# An entry not looked at within this window is presumed stale. Set to 30 days to match
+# the monthly scheduled check: a warning should mean "overdue now", not "overdue a
+# fortnight ago". The October 2026 pass is the evidence — 6 of 17 entries had changed
+# substantively in seven weeks, and two had become wrong rather than merely dated.
+FRESHNESS_DAYS = 30
 
 # confidence must be earned by the strongest source kind actually cited
 CONFIDENCE_FLOOR = {"primary": "high", "regulator": "medium", "secondary": "low"}

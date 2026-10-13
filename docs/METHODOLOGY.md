@@ -45,9 +45,17 @@ set and says so in its own notes.
 
 ## Freshness
 
-Entries are re-verified on a 45-day window; the validator warns past it. The window is set
-by the observed cadence of the fastest-moving jurisdictions in the set (Australia and
-India), not by convenience.
+Entries are re-verified on a 30-day window; the validator warns past it. The window is set
+to match the monthly scheduled check, so a warning means an entry is overdue now rather
+than overdue a fortnight ago. It was 45 days until October 2026 and was tightened after the
+first full pass found that 6 of 17 entries had changed substantively in seven weeks, two of
+them into statements that were wrong rather than merely dated.
+
+**The window is never satisfied automatically.** `last_verified` records that a person read
+a source and formed a view. The scheduled job can rebuild the site, check that every cited
+URL still resolves and open a dated work item listing what is overdue — it cannot re-verify
+a regulatory fact, and it never writes to `last_verified`. A tracker whose freshness dates
+advance without anyone reading anything is worse than one that admits it is stale.
 
 Re-verification passes are recorded in `CHANGELOG.md` — including passes where nothing
 changed, because the cadence is the thing being evidenced and a quiet month is data.

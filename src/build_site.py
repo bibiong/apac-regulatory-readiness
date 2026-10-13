@@ -112,6 +112,11 @@ td.name{color:var(--ink);font-weight:500}
 footer{border-top:1px solid var(--line);margin-top:3.5rem;padding:1.8rem 0 3rem;
   font-size:.82rem;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between}
 .back{font-size:.85rem;display:inline-block;margin-bottom:1.2rem}
+.fresh{display:inline-block;font:500 .7rem/1.3 var(--mono);padding:.1rem .4rem;border-radius:3px;
+  border:1px solid var(--line);color:var(--ink-3)}
+.fresh.due{border-color:var(--accent);color:var(--accent-deep);background:var(--accent-soft)}
+.fresh.over{border-color:#A33; color:#A33; font-weight:600}
+@media (prefers-color-scheme:dark){.fresh.over{color:#E88;border-color:#E88}}
 .cc{display:inline-block;font:600 .68rem/1.35 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   letter-spacing:.08em;padding:.12rem .36rem;border:1px solid var(--line);border-radius:4px;
   color:var(--ink-3);vertical-align:.06em}
@@ -159,6 +164,38 @@ def page(title: str, body: str, depth: int = 0) -> str:
 </div></body></html>"""
 
 
+# Freshness is aged in the reader's browser rather than stamped at build time, so the
+# live tracker tells the truth about staleness between scheduled checks — and the build
+# stays a pure function of the dataset.
+FRESH_JS = """<script>
+(function(){
+  var WINDOW=30, t=new Date(); t.setHours(0,0,0,0); var due=0, over=0, n=0;
+  document.querySelectorAll('[data-verified]').forEach(function(el){
+    var v=el.dataset.verified; if(!v) return;
+    var p=v.split('-'), d=new Date(+p[0],p[1]-1,+p[2]);
+    var age=Math.round((t-d)/864e5); n++;
+    if(el.hasAttribute('hidden')) return;
+    el.textContent='verified '+age+'d ago';
+    if(age>WINDOW*2){el.className='fresh over';el.textContent+=' \u2014 overdue';}
+    else if(age>WINDOW){el.className='fresh due';el.textContent+=' \u2014 due';}
+  });
+  document.querySelectorAll('[data-verified]').forEach(function(el){
+    var v=el.dataset.verified; if(!v) return;
+    var p=v.split('-'), d=new Date(+p[0],p[1]-1,+p[2]);
+    var age=Math.round((t-d)/864e5);
+    if(age>WINDOW*2) over++; else if(age>WINDOW) due++;
+  });
+  n=document.querySelectorAll('[data-verified]').length;
+  var s=document.getElementById('freshness');
+  if(s&&n){
+    if(over) s.innerHTML='<span class="fresh over">'+over+' of '+n+' entries overdue for re-verification</span>';
+    else if(due) s.innerHTML='<span class="fresh due">'+due+' of '+n+' entries due for re-verification</span>';
+    else s.innerHTML='<span class="fresh">all '+n+' entries within the '+WINDOW+'-day window</span>';
+  }
+})();
+</script>"""
+
+
 def build():
     entries = load()
     # The build must be a pure function of the dataset. An earlier version stamped
@@ -196,6 +233,7 @@ def build():
          'verified and a confidence rating earned by the strength of its sources.</p>',
          f'<p class="meta">Most recent verification {as_of.isoformat()} — each entry shows its own date. '
          f'Built from <code>tracker/data/</code>; the dataset is the source of truth and this page is a view of it.</p>',
+         '<p class="meta" id="freshness"></p>',
          '</header>']
 
     b.append('<div class="stats">')
@@ -276,6 +314,13 @@ def build():
              'entries as a prompt to go and check, not as an answer. The validator refuses a '
              'confidence rating the cited sources do not support.</div>')
 
+    # Freshness is computed in the reader's browser, not at build time, so the live
+    # site tells the truth about staleness between scheduled checks rather than only
+    # on the day it was generated.
+    b.append("".join(
+        f'<span data-verified="{as_date(e["last_verified"]).isoformat()}" hidden></span>'
+        for _, e in [(None, x) for x in entries]))
+    b.append(FRESH_JS)
     (OUT / "index.html").write_text(page("APAC Platform Regulation Tracker", "\n".join(b)))
 
     # ---- per-jurisdiction pages
@@ -358,10 +403,12 @@ def build():
             lv = as_date(e["last_verified"])
             p.append(f'<p class="src" style="margin-top:.8rem">Confidence '
                      f'<b>{esc(e.get("confidence","medium"))}</b> · last verified '
-                     f'{lv.isoformat() if lv else "—"} by {esc(e["verified_by"])}</p>')
+                     f'{lv.isoformat() if lv else "—"} by {esc(e["verified_by"])} '
+                     f'<span class="fresh" data-verified="{lv.isoformat() if lv else ""}"></span></p>')
             p.append("</div>")
 
         slug = j.lower().replace(" ", "-")
+        p.append(FRESH_JS)
         (jdir / f"{slug}.html").write_text(page(f"{j} — APAC Regulation Tracker", "\n".join(p), depth=1))
 
     print(f"built site/index.html and {len(by_j)} jurisdiction pages -> {OUT}")
