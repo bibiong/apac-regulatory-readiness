@@ -4,7 +4,7 @@
 the three things you build on top of a tracker: a response workflow, a measured AI toolkit,
 and a readiness assessment framework.**
 
-📊 **[Browse the tracker →](https://bibiong.github.io/apac-regulatory-readiness/)**
+📊 **[Browse the tracker →](https://brendaong.com/apac-regulatory-readiness/)**
 
 > Not legal advice. A personal portfolio project, unaffiliated with any employer. Worked
 > examples are fictional and labelled. See [DISCLAIMER.md](DISCLAIMER.md).
@@ -33,7 +33,7 @@ This repository is what that program looks like when it is built rather than des
 
 Structured YAML: instrument, regulator, status, obligations with their statutory clocks and
 required evidence, deadlines, penalty exposure, public enforcement signals, and cited
-sources. Rendered to a [static site](https://bibiong.github.io/apac-regulatory-readiness/)
+sources. Rendered to a [static site](https://brendaong.com/apac-regulatory-readiness/)
 with a cross-jurisdiction deadline board.
 
 ```bash
